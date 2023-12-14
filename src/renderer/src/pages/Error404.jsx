@@ -25,7 +25,7 @@ const Error404 = () => {
                 <p
                     className='text-gray-500'
                 >
-                    Your requested page no found.
+                    Sorry, the page you&apos;re looking for isn&apos;t available.
                 </p>
             </div>
             <div>

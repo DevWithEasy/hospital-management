@@ -10,7 +10,7 @@ const SideBar = () => {
     const sidebar=[
         {
             path : '/',
-            title : 'Dashboard',
+            title : 'Dashboar',
             icon : <IoHomeOutline/>,
         },
         {

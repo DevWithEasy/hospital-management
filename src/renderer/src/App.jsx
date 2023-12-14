@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom"
-import { DashBoard, Doctors, Error404, Home, Invoices, Layout, NewPatient,Patients, Payments, Settings,Appointments } from "./pages/Index"
+import { DashBoard, Doctors, Error404, Home, Invoices, Layout, NewPatient,Patients,Patient, Payments, Settings,Appointments, Doctor } from "./pages/Index"
 function App() {
   return (
     <Routes>
@@ -36,10 +36,26 @@ function App() {
         }
       />
       <Route
+        path="/patient/:id"
+        element={
+          <Layout>
+            <Patient />
+          </Layout>
+        }
+      />
+      <Route
         path="/doctors"
         element={
           <Layout>
             <Doctors />
+          </Layout>
+        }
+      />
+      <Route
+        path="/doctor/:id"
+        element={
+          <Layout>
+            <Doctor />
           </Layout>
         }
       />
