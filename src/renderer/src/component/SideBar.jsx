@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import { IoHomeOutline, IoSettingsOutline } from "react-icons/io5";
+import { IoHomeOutline, IoSettingsOutline,IoPersonAddOutline  } from "react-icons/io5";
 import { HiOutlineUsers } from "react-icons/hi2";
-import { LuUsers2 } from "react-icons/lu";
 import { IoMdBook } from "react-icons/io";
 import { FaUserDoctor } from "react-icons/fa6";
 import { MdOutlinePayment } from "react-icons/md";
@@ -10,19 +9,19 @@ import { LiaFileInvoiceSolid } from "react-icons/lia";
 const SideBar = () => {
     const sidebar=[
         {
-            path : '/dashboard',
+            path : '/',
             title : 'Dashboard',
             icon : <IoHomeOutline/>,
+        },
+        {
+            path : '/new_patient',
+            title : 'New Patient',
+            icon : <IoPersonAddOutline/>,
         },
         {
             path : '/patients',
             title : 'Patients',
             icon : <HiOutlineUsers/>,
-        },
-        {
-            path : '/reciptions',
-            title : 'Reciptions',
-            icon : <LuUsers2/>,
         },
         {
             path : '/doctors',
@@ -52,7 +51,7 @@ const SideBar = () => {
     ]
     return (
         <div
-            className='flex flex-col'
+            className='flex flex-col space-y-2'
         >
             {
                 sidebar.map((s,i)=>

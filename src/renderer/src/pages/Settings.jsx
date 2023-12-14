@@ -1,11 +1,11 @@
 import {Heading} from "../component/Index";
 
-const NewPatient = () => {
+const Settings = () => {
     return (
         <div>
-            <Heading>New Patient</Heading>
+            <Heading>Settings</Heading>
         </div>
     );
 };
 
-export default NewPatient;
+export default Settings;

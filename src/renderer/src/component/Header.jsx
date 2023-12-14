@@ -3,11 +3,11 @@ import user_image from '../assets/demo-user.png'
 const Header = () => {
     return (
         <div
-            className='absolute left-0 top-0 w-full px-4 py-2 flex justify-between'
+            className='absolute left-0 top-0 w-full p-2 flex justify-between bg-slate-100/50 rounded-tl-md'
         >
             <input 
                 placeholder='patient name'
-                className='w-1/4 px-2 py-1 bg-teal-50/50 border border-teal-100 focus:outline-none rounded-md'
+                className='w-1/4 p-2 bg-slate-50/80 text-sm border focus:outline-none rounded-md'
             />
             <div
             className='flex items-center space-x-2'

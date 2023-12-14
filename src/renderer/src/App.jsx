@@ -1,45 +1,85 @@
-import {Routes,Route} from "react-router-dom"
-import {DashBoard, Error404, Home, Layout, NewPatient} from "./pages/Index"
+import { Routes, Route } from "react-router-dom"
+import { DashBoard, Doctors, Error404, Home, Invoices, Layout, NewPatient,Patients, Payments, Settings,Appointments } from "./pages/Index"
 function App() {
-  return(
+  return (
     <Routes>
-      <Route 
-        path="/" 
+      <Route
+        path="/"
         element={
           <Layout>
-            <Home/>
+            <DashBoard />
           </Layout>
         }
       />
-      <Route 
-        path="/dashboard" 
+      <Route
+        path="/home"
         element={
           <Layout>
-            <DashBoard/>
+            <Home />
           </Layout>
         }
       />
-      <Route 
-        path="/new_patient" 
+      <Route
+        path="/new_patient"
         element={
           <Layout>
-            <NewPatient/>
+            <NewPatient />
           </Layout>
         }
       />
-      <Route 
-        path="/about" 
+      <Route
+        path="/patients"
         element={
           <Layout>
-            <Home/>
+            <Patients />
           </Layout>
         }
       />
-      <Route 
-        path="/*" 
+      <Route
+        path="/doctors"
         element={
           <Layout>
-            <Error404/>
+            <Doctors />
+          </Layout>
+        }
+      />
+      <Route
+        path="/appointments"
+        element={
+          <Layout>
+            <Appointments />
+          </Layout>
+        }
+      />
+      <Route
+        path="/payments"
+        element={
+          <Layout>
+            <Payments />
+          </Layout>
+        }
+      />
+      <Route
+        path="/invoices"
+        element={
+          <Layout>
+            <Invoices />
+          </Layout>
+        }
+      />
+      <Route
+        path="/settings"
+        element={
+          <Layout>
+            <Settings />
+          </Layout>
+        }
+      />
+      <Route
+        path="/*"
+        element={
+          <Layout>
+            <Error404 />
           </Layout>
         }
       />

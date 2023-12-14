@@ -1,7 +1,7 @@
 const Heading = ({children}) => {
     return (
         <h1
-            className="text-2xl"
+            className="text-xl py-2"
         >
             {children}
         </h1>
