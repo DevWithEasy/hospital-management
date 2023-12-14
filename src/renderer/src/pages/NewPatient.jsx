@@ -18,22 +18,22 @@ const NewPatient = () => {
                     <Input {...{
                         value,setValue,
                         name : 'name',
-                        placeholder : 'Patient name'
+                        placeholder : 'Name'
                     }}/>
                     <Input {...{
                         value,setValue,
                         name : 'age',
-                        placeholder : 'Patient age'
+                        placeholder : 'Age'
                     }}/>
                     <Input {...{
                         value,setValue,
                         name : 'mobile',
-                        placeholder : 'Patient mobile no'
+                        placeholder : 'Mobile no'
                     }}/>
                     <Input {...{
                         value,setValue,
                         name : 'address',
-                        placeholder : 'Patient address'
+                        placeholder : 'Address'
                     }}/>
                 </div>
                 <div
