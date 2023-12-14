@@ -1,4 +1,5 @@
 import Header from "./Header";
+import Heading from "./Heading";
 import SideBar from "./SideBar";
 
-export {SideBar,Header}
+export {SideBar,Header,Heading}

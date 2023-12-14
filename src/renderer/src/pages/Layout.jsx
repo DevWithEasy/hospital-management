@@ -11,7 +11,7 @@ const Layout = ({children}) => {
                 <SideBar/>
             </div>
             <div
-                className='w-10/12 p-2 pt-10 bg-slate-50'
+                className='relative w-10/12 p-2 pt-10 bg-slate-50'
             >
                 <Header />
                 {children}

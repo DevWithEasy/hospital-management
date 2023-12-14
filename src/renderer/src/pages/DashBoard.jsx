@@ -1,9 +1,9 @@
-import React from 'react';
+import {Heading} from '../component/Index';
 
 const DashBoard = () => {
     return (
         <div>
-            
+            <Heading>Dashboard</Heading>
         </div>
     );
 };
