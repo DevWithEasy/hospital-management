@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active{
+    @apply bg-teal-50 text-teal-500 rounded-md p-2
+}
