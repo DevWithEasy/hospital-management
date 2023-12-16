@@ -1,6 +1,8 @@
 import { Heading } from "../component/Index";
+import {useNavigate} from 'react-router-dom';
 
 const Patients = () => {
+    const navigate = useNavigate()
     return (
         <div>
             <Heading>Patients</Heading>
@@ -9,48 +11,36 @@ const Patients = () => {
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead className="text-xs text-gray-700 uppercase bg-slate-100">
                         <tr>
-                            <th scope="col" className="px-6 py-3">
-                                Product name
+                            <th scope="col" className="px-2 py-3">
+                                ID
                             </th>
-                            <th scope="col" className="px-6 py-3">
-                                Color
+                            <th scope="col" className="px-2 py-3">
+                                Name
                             </th>
-                            <th scope="col" className="px-6 py-3">
+                            <th scope="col" className="px-2 py-3">
+                                Address
+                            </th>
+                            <th scope="col" className="px-2 py-3">
                                 Category
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Price
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="bg-white border-b hover:bg-teal-50">
-                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <tr 
+                            onClick={()=>navigate(`/patient/fadhfakjsdfha`)}
+                            className="bg-white border-b hover:bg-teal-50 cursor-pointer"
+                        >
+                            <td scope="row" className="p-2 whitespace-nowrap">
+                                jdfadshfadsw
+                            </td>
+                            <td scope="row" className="p-2 whitespace-nowrap">
                                 Apple MacBook Pro 17&quot;
-                            </th>
-                            <td className="px-6 py-4">
+                            </td>
+                            <td className="p-2">
                                 Silver
                             </td>
-                            <td className="px-6 py-4">
-                                Laptop
-                            </td>
-                            <td className="px-6 py-4">
-                                $2999
-                            </td>
-                            <td className="px-6 py-4 space-x-2 text-right">
-                                <button 
-                                    className="font-medium text-blue-600 hover:underline"
-                                >
-                                    Edit
-                                </button>
-                                <button 
-                                    className="font-medium text-red-600 hover:underline"
-                                >
-                                    Delete
-                                </button>
+                            <td className="p-2">
+                                01717642515
                             </td>
                         </tr>
                     </tbody>

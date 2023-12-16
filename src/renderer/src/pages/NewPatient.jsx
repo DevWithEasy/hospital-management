@@ -1,52 +1,74 @@
-import { useState } from "react";
-import {Heading, Input} from "../component/Index";
-import handleChange from "../utils/handleChange";
+import { useRef, useState } from "react";
+import { Heading, Input } from "../component/Index";
+import AvailableRoom from "../component/AvailableRoom";
 
 const NewPatient = () => {
-    const [value,setValue] = useState({
+    const roomRef = useRef(null)
+    const [view, setView] = useState(false)
 
+    const [value, setValue] = useState({
+        name: '',
+        age: '',
+        mobile: '',
+        address: '',
+        floor: '',
+        room: ''
     })
+
     return (
         <div>
             <Heading>New Patient</Heading>
-            <div
+            <form
                 className="space-y-2"
             >
                 <div
                     className="grid grid-cols-2 gap-2"
                 >
                     <Input {...{
-                        value,setValue,
-                        name : 'name',
-                        placeholder : 'Name'
-                    }}/>
+                        value, setValue,
+                        currentValue: value.name,
+                        name: 'name',
+                        label: 'Name'
+                    }} />
                     <Input {...{
-                        value,setValue,
-                        name : 'age',
-                        placeholder : 'Age'
-                    }}/>
+                        value, setValue,
+                        currentValue: value.age,
+                        name: 'age',
+                        label: 'Age'
+                    }} />
                     <Input {...{
-                        value,setValue,
-                        name : 'mobile',
-                        placeholder : 'Mobile no'
-                    }}/>
+                        value, setValue,
+                        currentValue: value.mobile,
+                        name: 'mobile',
+                        label: 'Mobile no'
+                    }} />
                     <Input {...{
-                        value,setValue,
-                        name : 'address',
-                        placeholder : 'Address'
-                    }}/>
+                        value, setValue,
+                        currentValue: value.address,
+                        name: 'address',
+                        label: 'Address'
+                    }} />
                 </div>
                 <div
                     className="grid grid-cols-2 gap-2"
                 >
-                    <select
-                        onChange={(e)=>handleChange(e,value,setValue)}
-                        className="w-full p-2 rounded"
+                    <div
+                        className="space-y-2"
                     >
-                        <option>Select Floor</option>
-                    </select>
+                        <label className="text-gray-500 text-base">Floor And Room</label>
+                        <input
+                            ref={roomRef}
+                            value={`${value.floor && value.room ? `Floor : ${value.floor}, Room No: ${value.room}` : ''}`}
+                            onFocus={() => setView(!view)}
+                            className="w-full p-2 rounded"
+                            readOnly
+                        />
+                    </div>
                 </div>
-            </div>
+            </form>
+            {view &&
+                    <AvailableRoom {...{ roomRef, view, setView, value, setValue }} />
+                }
         </div>
     );
 };

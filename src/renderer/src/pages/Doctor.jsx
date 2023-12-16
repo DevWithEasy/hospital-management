@@ -3,7 +3,7 @@ import {Heading} from "../component/Index";
 const Doctor = () => {
     return (
         <div>
-            <Heading>Patients</Heading>
+            <Heading>Doctor</Heading>
         </div>
     );
 };
