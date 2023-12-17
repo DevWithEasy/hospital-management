@@ -23,12 +23,13 @@ const SearchPatient = ({patients, view, setView}) => {
                 className="w-4/12 p-4 space-y-4 bg-white shadow-xl rounded-md"
             >
                 {patients &&
-                    patients.map(p=><div
+                    patients.slice(0,5).map(p=><div
                         key={p.id}
                         onClick={()=>handleNavigate(p)}
-                        className="border rounded-md"
+                        className="p-2 border rounded-md cursor-pointer"
                     >
-                        {p.name}
+                        <p>{p.name}</p>
+                        <p className='text-sm text-gray-400'>{p.address.street}</p>
                     </div>)
                 }
             </div>
