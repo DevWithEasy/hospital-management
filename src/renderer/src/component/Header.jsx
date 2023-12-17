@@ -20,15 +20,15 @@ const Header = () => {
     }
     return (
         <div
-            className='absolute left-0 top-0 w-full p-2 pr-4 flex justify-between bg-slate-100/50 rounded-tl-md'
+            className='absolute left-0 top-0 w-full p-2 pr-4 flex justify-between bg-slate-200/50 rounded-tl-md'
         >
             <input
                 placeholder='patient name'
-                className='w-1/4 sm:w-2/4 p-2 bg-slate-50/80 text-sm border focus:outline-none rounded-md'
+                className='w-1/4 sm:w-2/4 p-2 bg-slate-50/90 text-sm border focus:outline-none rounded-md'
                 onChange={(e)=>handleSearch(e.target.value)}
             />
             <div
-                className='pl-2 pr-4 flex items-center space-x-2 border rounded'
+                className='pl-2 pr-4 flex items-center space-x-2 bg-white border rounded'
             >
                 <img
                     src={user_image}

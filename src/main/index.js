@@ -12,6 +12,13 @@ expressApp.get('/',(req,res)=>{
   })
 })
 
+expressApp.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).json({
+    message: 'Internal Server Error'
+  })
+})
+
 expressApp.listen(9999,()=>console.log('listening on'))
 
 function createWindow() {
