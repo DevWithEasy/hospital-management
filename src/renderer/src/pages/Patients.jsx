@@ -9,7 +9,7 @@ const Patients = () => {
 
             <div className="relative overflow-x-auto">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500">
-                    <thead className="text-xs text-gray-700 uppercase bg-slate-100">
+                    <thead className="text-xs text-gray-700 uppercase bg-slate-200">
                         <tr>
                             <th scope="col" className="px-2 py-3">
                                 ID
