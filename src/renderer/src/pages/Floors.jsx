@@ -1,11 +1,18 @@
-import {Heading} from "../component/Index";
+import { useState } from "react";
+import {AddFloor, Heading} from "../component/Index";
 import {useNavigate} from 'react-router-dom';
 
 const Floors = () => {
     const navigate = useNavigate()
+    const [view,setView] = useState(false)
     return (
         <div>
             <Heading>Floors</Heading>
+            <button
+                onClick={()=>setView(!view)}
+            >
+                Add Floor
+            </button>
             <div className="relative overflow-x-auto">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead className="text-xs text-gray-700 uppercase bg-slate-200">
@@ -45,6 +52,9 @@ const Floors = () => {
                     </tbody>
                 </table>
             </div>
+            {view &&
+                <AddFloor {...{view,setView}}/>
+            }
         </div>
     );
 };

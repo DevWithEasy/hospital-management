@@ -4,15 +4,19 @@ import Doctor from "./Doctor";
 import Doctors from "./Doctors";
 import Error404 from "./Error404";
 import Floor from "./Floor";
+import Floors from "./Floors";
 import Home from "./Home";
+import Invoice from "./Invoice";
 import Invoices from "./Invoices";
 import Layout from "./Layout";
 import Login from "./Login";
 import NewPatient from "./NewPatient";
 import Patient from "./Patient";
 import Patients from "./Patients";
+import Payment from "./Payment";
 import Payments from "./Payments";
 import Settings from "./Settings";
 import Users from "./Users";
 
-export {Login,Home,Layout,DashBoard,NewPatient,Error404,Doctors,Patients,Payments,Invoices,Users,Settings,Appointments,Floor,Doctor,Patient}
+
+export { Appointments, DashBoard, Doctor, Doctors, Error404, Floor, Floors, Home, Invoice, Invoices, Layout, Login, NewPatient, Patient, Patients, Payment, Payments, Settings, Users };

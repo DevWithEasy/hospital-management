@@ -5,6 +5,7 @@ import { IoMdBook } from "react-icons/io";
 import { FaUserDoctor } from "react-icons/fa6";
 import { MdOutlinePayment } from "react-icons/md";
 import { LiaFileInvoiceSolid } from "react-icons/lia";
+import { BsBuildings } from "react-icons/bs";
 
 const SideBar = () => {
     const sidebar=[
@@ -27,6 +28,11 @@ const SideBar = () => {
             path : '/doctors',
             title : 'Doctors',
             icon : <FaUserDoctor/>,
+        },
+        {
+            path : '/floors',
+            title : 'Floors',
+            icon : <BsBuildings/>,
         },
         {
             path : '/appointments',
