@@ -2,24 +2,6 @@ import { app, shell, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import express from 'express'
-
-const expressApp = express()
-
-expressApp.get('/',(req,res)=>{
-  res.json({
-    message : 'Success'
-  })
-})
-
-expressApp.use((err, req, res, next) => {
-  console.error(err.stack)
-  res.status(500).json({
-    message: 'Internal Server Error'
-  })
-})
-
-expressApp.listen(9999,()=>console.log('listening on'))
 
 function createWindow() {
 

@@ -1,8 +1,16 @@
+/* eslint-disable react/prop-types */
 import {Header, SideBar} from "../component/Index";
+import useUserStore from "../store/userStore";
+import {Login} from "./Index";
 
 const Layout = ({children}) => {
-    return (
-        <div
+    const {isAuth} = useUserStore()
+
+    if(!isAuth){
+        return <Login/>
+    }else{
+        return(
+            <div
             className='flex justify-between h-screen'
         >
             <div
@@ -17,7 +25,8 @@ const Layout = ({children}) => {
                 {children}
             </div>
         </div>
-    );
+        )
+    }
 };
 
 export default Layout;

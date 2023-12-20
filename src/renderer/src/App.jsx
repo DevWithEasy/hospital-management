@@ -1,7 +1,10 @@
 import { Routes, Route } from "react-router-dom"
+import { Toaster } from 'react-hot-toast';
 import { DashBoard, Doctors, Error404, Home, Invoices, Layout, NewPatient,Patients,Patient, Payments, Settings,Appointments, Doctor } from "./pages/Index"
 function App() {
   return (
+    <>
+    <Toaster/>
     <Routes>
       <Route
         path="/"
@@ -100,6 +103,8 @@ function App() {
         }
       />
     </Routes>
+    </>
+    
   )
 }
 
