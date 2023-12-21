@@ -6,10 +6,13 @@ const Floors = () => {
     const navigate = useNavigate()
     const [view,setView] = useState(false)
     return (
-        <div>
+        <div
+            className="space-y-2"
+        >
             <Heading>Floors</Heading>
             <button
                 onClick={()=>setView(!view)}
+                className='px-4 py-2 bg-teal-500 text-white rounded-md'
             >
                 Add Floor
             </button>
