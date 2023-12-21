@@ -40,6 +40,11 @@ const SideBar = () => {
             icon : <IoMdBook/>,
         },
         {
+            path : '/medicines',
+            title : 'Medicines',
+            icon : <IoMdBook/>,
+        },
+        {
             path : '/payments',
             title : 'Payments',
             icon : <MdOutlinePayment />,

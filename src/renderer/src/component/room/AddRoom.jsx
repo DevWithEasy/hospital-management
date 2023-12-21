@@ -3,10 +3,14 @@ import { useState } from "react";
 import {Input, Toast} from "../Index";
 import axios  from "axios";
 import toast from 'react-hot-toast'
+import {useParams} from 'react-router-dom'
 
 const AddRoom = ({view,setView}) => {
+    const {id} = useParams()
     const [value,setValue] = useState({
-        floorNo : ''
+        floorId : id,
+        roomNo : '',
+        rentFee : ''
     })
 
     const handleAddRoom=async(e)=>{
@@ -39,26 +43,35 @@ const AddRoom = ({view,setView}) => {
             className='h-screen fixed top-0 left-0 w-full flex justify-center items-center bg-gray-500/50'
         >
             <div
-                className='w-1/4 bg-white rounded-md shadow-xl'
+                className='w-11/12 md:w-6/12 lg:w-5/12 bg-white rounded-md shadow-xl'
             >
                 <h2
-                    className="p-2 text-center border-b"
+                    className="p-2 text-xl uppercase border-b"
                 >
                     Add new floor
                 </h2>
                 <form
                     onSubmit={(e)=>handleAddRoom(e)}
-                    className="p-4"
+                    className="p-4 space-y-2"
                 >
                     <Input {...{
-                        label : 'Floor No',
+                        label : 'Room No',
                         type : 'number',
-                        name : 'floorNo',
+                        name : 'roomNo',
                         currentValue : value.floorNo,
                         value,setValue
                     }}/>
-                    <button>
-
+                    <Input {...{
+                        label : 'Rent Fee',
+                        type : 'number',
+                        name : 'rentFee',
+                        currentValue : value.floorNo,
+                        value,setValue
+                    }}/>
+                    <button
+                        className="px-6 py-2 bg-teal-500 text-white rounded-md"
+                    >
+                        Submit
                     </button>
                 </form>
             </div>

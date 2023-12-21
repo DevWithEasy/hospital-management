@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom"
 import { Toaster } from 'react-hot-toast';
-import { DashBoard, Doctors, Error404, Home, Invoices, Layout, NewPatient,Patients,Patient, Payments, Settings,Appointments, Doctor, Payment, Invoice, Floors, Floor } from "./pages/Index"
+import { DashBoard, Doctors, Error404, Home, Invoices, Layout, NewPatient,Patients,Patient, Payments, Settings,Appointments, Doctor, Payment, Invoice, Floors, Floor, Medicines } from "./pages/Index"
 function App() {
   return (
     <>
@@ -83,6 +83,14 @@ function App() {
         element={
           <Layout>
             <Appointments />
+          </Layout>
+        }
+      />
+      <Route
+        path="/medicines"
+        element={
+          <Layout>
+            <Medicines />
           </Layout>
         }
       />

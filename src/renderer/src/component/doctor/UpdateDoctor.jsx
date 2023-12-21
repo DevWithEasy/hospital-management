@@ -4,7 +4,7 @@ import { Input, Toast } from "../Index";
 import axios from "axios";
 import toast from 'react-hot-toast'
 
-const AddDoctor = ({ view, setView }) => {
+const UpdateDoctor = ({ view, setView }) => {
     const [value, setValue] = useState({
         name: '',
         specialist: '',
@@ -14,7 +14,7 @@ const AddDoctor = ({ view, setView }) => {
     })
     const [image, setImage] = useState(null)
 
-    const handleAddDoctor = async (e) => {
+    const handleUpdateDoctor = async (e) => {
         e.preventDefault()
         if (!value.floorNo) {
             toast.custom((t) => <Toast {...{
@@ -49,10 +49,10 @@ const AddDoctor = ({ view, setView }) => {
                 <h2
                     className="p-2 text-xl uppercase border-b"
                 >
-                    Add new doctor
+                    Update doctor
                 </h2>
                 <form
-                    onSubmit={(e) => handleAddDoctor(e)}
+                    onSubmit={(e) => handleUpdateDoctor(e)}
                     className="p-4 space-y-2"
                 >
                     <Input {...{
@@ -107,4 +107,4 @@ const AddDoctor = ({ view, setView }) => {
     );
 };
 
-export default AddDoctor;
+export default UpdateDoctor;

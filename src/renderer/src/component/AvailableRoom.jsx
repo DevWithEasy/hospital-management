@@ -1,4 +1,7 @@
 /* eslint-disable react/prop-types */
+import toast from 'react-hot-toast'
+import {Toast} from './Index';
+
 const AvailableRoom = ({roomRef, view, setView, value, setValue}) => {
     const handleView=(e)=>{
         if(e.target.id === 'wrapper'){
@@ -9,7 +12,11 @@ const AvailableRoom = ({roomRef, view, setView, value, setValue}) => {
 
     const handleSelectRoom=(floor,room)=>{
         if(room.status === 'booked'){
-            return alert('Already Booked.')
+            toast.custom((t)=><Toast {...{
+                t,
+                type : 'error',
+                message : 'This room aleady booked.Please select another.'
+            }}/>)
         }else{
             const newValue={
                 ...value,
