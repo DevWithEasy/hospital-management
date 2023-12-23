@@ -22,7 +22,7 @@ const Doctors = () => {
                     view,setView
                 }}/>
             </div>
-            <div className="relative overflow-x-auto">
+            <div className="relative overflow-x-auto p-2 bg-white rounded-md">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead className="text-xs text-gray-700 uppercase bg-slate-200">
                         <tr>

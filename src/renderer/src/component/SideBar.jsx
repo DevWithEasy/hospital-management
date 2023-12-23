@@ -6,6 +6,7 @@ import { FaUserDoctor } from "react-icons/fa6";
 import { MdOutlinePayment } from "react-icons/md";
 import { LiaFileInvoiceSolid } from "react-icons/lia";
 import { BsBuildings } from "react-icons/bs";
+import { GiMedicines } from "react-icons/gi";
 
 const SideBar = () => {
     const sidebar=[
@@ -42,7 +43,7 @@ const SideBar = () => {
         {
             path : '/medicines',
             title : 'Medicines',
-            icon : <IoMdBook/>,
+            icon : <GiMedicines/>,
         },
         {
             path : '/payments',

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import {Heading, Input_Search} from "../component/Index";
-import {useNavigate} from 'react-router-dom';
+import { Heading, Input_Search } from "../component/Index";
+import { useNavigate } from 'react-router-dom';
 
 const Payments = () => {
     const navigate = useNavigate()
@@ -15,7 +15,7 @@ const Payments = () => {
                 query, setQuery
             }} />
 
-            <div className="relative overflow-x-auto">
+            <div className="relative overflow-x-auto p-2 bg-white rounded-md">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead className="text-xs text-gray-700 uppercase bg-slate-200">
                         <tr>
@@ -34,8 +34,8 @@ const Payments = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr 
-                            onClick={()=>navigate(`/patient/fadhfakjsdfha`)}
+                        <tr
+                            onClick={() => navigate(`/patient/fadhfakjsdfha`)}
                             className="bg-white border-b cursor-pointer"
                         >
                             <td scope="row" className="p-2 whitespace-nowrap">

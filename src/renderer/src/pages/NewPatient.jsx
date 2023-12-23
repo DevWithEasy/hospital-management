@@ -16,10 +16,12 @@ const NewPatient = () => {
     })
 
     return (
-        <div>
+        <div
+            className="space-y-2"
+        >
             <Heading>New Patient</Heading>
             <form
-                className="space-y-2"
+                className="p-2 space-y-2 bg-white rounded-md"
             >
                 <div
                     className="grid grid-cols-2 gap-2"
@@ -60,11 +62,16 @@ const NewPatient = () => {
                             ref={roomRef}
                             value={`${value.floor && value.room ? `Floor : ${value.floor}, Room No: ${value.room}` : ''}`}
                             onFocus={() => setView(!view)}
-                            className="w-full p-2 rounded"
+                            className="w-full p-2 border rounded-md"
                             readOnly
                         />
                     </div>
                 </div>
+                <button
+                    className="px-4 py-2 bg-teal-500 text-white rounded-md"
+                >
+                    Submit
+                </button>
             </form>
             {view &&
                     <AvailableRoom {...{ roomRef, view, setView, value, setValue }} />

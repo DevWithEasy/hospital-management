@@ -47,7 +47,7 @@ const AddDoctor = ({ view, setView }) => {
                 className='w-10/12 md:w-10/12 lg:w-8/12 md:my-10 bg-white rounded-md shadow-'
             >
                 <div
-                    className="p-2 flex justify-between items-center text-xl uppercase border-b"
+                    className="p-2 flex justify-between items-center text-xl font-semibold uppercase border-b"
                 >
                     <p>
                         Add new doctor

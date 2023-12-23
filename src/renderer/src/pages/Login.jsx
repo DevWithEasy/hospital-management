@@ -26,7 +26,7 @@ const Login = () => {
         }
         try {
             const res = await axios.post(`${api_url}/api/auth/signin`,value)
-            localStorage.setItem('token',res.data.token)
+            localStorage.setItem('access_token',`Bareer ${res.data.token}`)
             addUser(res.data.data)
         } catch (error) {
             toast.custom((t)=>

@@ -5,11 +5,24 @@ import { FaRegUser } from "react-icons/fa";
 import { CiUnlock } from "react-icons/ci";
 import { useState } from "react";
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { MdDeleteOutline } from "react-icons/md";
+import { LiaSave } from "react-icons/lia";
+import { Input_Password } from "./Index";
 
 const Settings = () => {
     const { user } = useUserStore()
-    const [state,setState] = useState(1)
-    const {value,setValue} = useState(user)
+    const [state, setState] = useState(1)
+    const [value, setValue] = useState(user)
+    const [passwords, setPasswords] = useState({
+        oldPassword: '',
+        newPassword: '',
+        confirmPassword: ''
+    })
+
+    const handleImage=()=>{
+
+    }
+
     return (
         <div
             className="space-y-2"
@@ -34,12 +47,12 @@ const Settings = () => {
                             Robiul Awal
                         </p>
                         <p
-                            className="text-gray-400"
+                            className="text-sm text-gray-400"
                         >
                             robiulawal68@mail.com
                         </p>
                         <p
-                            className="text-sm"
+                            className="text-sm text-gray-600"
                         >
                             +8801717642515
                         </p>
@@ -48,15 +61,15 @@ const Settings = () => {
                         className="space-y-2"
                     >
                         <button
-                            onClick={()=>setState(1)}
-                            className={`w-full p-2 flex items-center space-x-3 ${state===1 ? 'bg-teal-50 text-teal-500' : 'bg-gray-50'} rounded-md`}
+                            onClick={() => setState(1)}
+                            className={`w-full p-2 flex items-center space-x-3 ${state === 1 ? 'bg-teal-50 text-teal-500' : 'bg-gray-50'} rounded-md`}
                         >
                             <FaRegUser />
                             <span>Persional information</span>
                         </button>
                         <button
-                            onClick={()=>setState(2)}
-                            className={`w-full p-2 flex items-center space-x-3 ${state===2 ? 'bg-teal-50 text-teal-500' : 'bg-gray-50'} rounded-md`}
+                            onClick={() => setState(2)}
+                            className={`w-full p-2 flex items-center space-x-3 ${state === 2 ? 'bg-teal-50 text-teal-500' : 'bg-gray-50'} rounded-md`}
                         >
                             <CiUnlock />
                             <span>Change password</span>
@@ -75,24 +88,24 @@ const Settings = () => {
                             >
                                 <label
                                     htmlFor="image"
-                                    className="w-full p-4 flex flex-col items-center border border-dashed rounded-md"
+                                    className="w-full p-4 flex flex-col items-center border border-dashed rounded-md cursor-pointer"
                                 >
-                                    <IoCloudUploadOutline/>
+                                    <IoCloudUploadOutline />
                                     <p
                                         className="font-semibold"
                                     >
                                         Upload your image here
                                     </p>
                                     <p
-                                        className="text-gray-300 italic"
+                                        className="text-xs text-gray-400 italic"
                                     >
                                         Only upload jpg,jpeg and png image will be accepted.
                                     </p>
                                 </label>
-                                <input 
+                                <input
                                     id="image"
                                     type="file"
-                                    onChange={(e)=>{}}
+                                    onChange={(e) => handleImage(e.target.files[0])}
                                     className="hidden"
                                 />
                                 <div
@@ -103,25 +116,80 @@ const Settings = () => {
                             </div>
                             <Input {...{
                                 label: 'Name',
-                                name : 'name',
-                                currentValue : value?.name,
-                                value,setValue
-                            }}/>
+                                name: 'name',
+                                currentValue: value?.name,
+                                value, setValue
+                            }} />
                             <Input {...{
                                 label: 'Email',
-                                name : 'email',
-                                currentValue : value?.email,
-                                value,setValue
-                            }}/>
+                                name: 'email',
+                                currentValue: value?.email,
+                                value, setValue
+                            }} />
                             <Input {...{
                                 label: 'Phone',
-                                name : 'phone',
-                                currentValue : value?.phone,
-                                value,setValue
-                            }}/>
+                                name: 'phone',
+                                currentValue: value?.phone,
+                                value, setValue
+                            }} />
+                            <div
+                                className="flex items-center space-x-4 py-2"
+                            >
+                                <button
+                                    onClick={() => setState(2)}
+                                    className="w-full p-2 flex justify-center items-center space-x-3 bg-gray-400 hover:bg-red-500 text-white rounded-md transition-all duration-300"
+                                >
+                                    <MdDeleteOutline size={20} />
+                                    <span>Delete account</span>
+                                </button>
+                                <button
+                                    onClick={() => setState(2)}
+                                    className="w-full p-2 flex justify-center items-center space-x-3 bg-teal-400 hover:bg-teal-500 text-white rounded-md transition-all duration-300"
+                                >
+                                    <LiaSave size={20} />
+                                    <span>Save chnages</span>
+                                </button>
+                            </div>
                         </div>
                         :
-                        <div>
+                        <div
+                            className="space-y-2"
+                        >
+                            <h2
+                                className="py-2 text-xl font-semibold border-b"
+                            >
+                                Change password
+                            </h2>
+
+                            <Input {...{
+                                label: 'Old password',
+                                name: 'oldPassword',
+                                currentValue: passwords?.oldPassword,
+                                value: passwords,
+                                setValue: setPasswords
+                            }} />
+
+                            <Input_Password {...{
+                                label: 'New password',
+                                name: 'newPassword',
+                                currentValue: passwords?.newPassword,
+                                value: passwords,
+                                setValue: setPasswords
+                            }} />
+
+                            <Input_Password {...{
+                                label: 'Confirm password',
+                                name: 'confirmPassword',
+                                currentValue: passwords?.confirmPassword,
+                                value: passwords,
+                                setValue: setPasswords
+                            }} />
+
+                            <button
+                                className="px-4 py-2 bg-teal-500 text-white rounded-md"
+                            >
+                                Save Change
+                            </button>
 
                         </div>
                     }

@@ -1,30 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import {Input, Toast} from "../Index";
-import axios  from "axios";
-import toast from 'react-hot-toast'
+import {Input} from "../Index";
+
+import { create } from "../../utils/api_crud";
+import useUserStore from "../../store/userStore";
 
 const AddFloor = ({view,setView}) => {
+    const {reload} = useUserStore()
     const [value,setValue] = useState({
         floorNo : ''
     })
-
-    const handleAddFloor=async(e)=>{
-        e.preventDefault()
-        if(!value.floorNo){
-            toast.custom((t)=><Toast {...{
-                t,
-                type : 'error',
-                message : 'Please insert floor no.'
-            }}/>)
-        }
-        try {
-            const res = await axios.post('')
-            console.log(res.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     const handleView=(e)=>{
         if(e.target.id === 'wrapper'){
@@ -55,7 +40,13 @@ const AddFloor = ({view,setView}) => {
                     </button>
                 </div>
                 <form
-                    onSubmit={(e)=>handleAddFloor(e)}
+                    onSubmit={(e)=>create({
+                        e,
+                        path : 'floor',
+                        value,
+                        setView,
+                        reload
+                    })}
                     className="p-4 space-y-2"
                 >
                     <Input {...{

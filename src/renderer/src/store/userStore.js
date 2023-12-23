@@ -5,6 +5,7 @@ const createUserStore = (set)=>({
     isAuth : false,
     user : {},
     users : [],
+    random : 0,
 
     addUser : (data)=>{
         set(()=>({
@@ -21,6 +22,11 @@ const createUserStore = (set)=>({
     addUsers : (users)=>{
         set(()=>({
             users : users
+        }))
+    },
+    reload : ()=>{
+        set(()=>({
+            random : Math.random()
         }))
     }
 })

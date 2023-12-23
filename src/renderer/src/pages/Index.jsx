@@ -1,3 +1,4 @@
+import Input_Password from "../component/Input_Password";
 import Appointments from "./Appointments";
 import DashBoard from "./DashBoard";
 import Doctor from "./Doctor";
@@ -20,4 +21,4 @@ import Settings from "./Settings";
 import Users from "./Users";
 
 
-export {Medicines, Appointments, DashBoard, Doctor, Doctors, Error404, Floor, Floors, Home, Invoice, Invoices, Layout, Login, NewPatient, Patient, Patients, Payment, Payments, Settings, Users };
+export { Appointments, DashBoard, Doctor, Doctors, Error404, Floor, Floors, Home, Input_Password, Invoice, Invoices, Layout, Login, Medicines, NewPatient, Patient, Patients, Payment, Payments, Settings, Users };

@@ -1,7 +1,8 @@
 import { useState } from "react";
-import {Heading, Input_Search} from "../component/Index";
+import {Button_Add, Heading, Input_Search} from "../component/Index";
 
 const Appointments = () => {
+    const [view,setView] = useState(false)
     const [query,setQuery] = useState('')
     return (
         <div
@@ -9,9 +10,17 @@ const Appointments = () => {
         >
             <Heading>Appointments</Heading>
 
-            <Input_Search {...{
+            <div
+                className='flex justify-between items-center'
+            >
+                <Input_Search {...{
                     query,setQuery
                 }}/>
+                <Button_Add {...{
+                    text: 'Add Appoinment',
+                    view,setView
+                }}/>
+            </div>
         </div>
     );
 };
