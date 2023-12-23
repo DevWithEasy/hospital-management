@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { AddShedule, Heading } from "../component/Index";
 import image from '../assets/demo-user.png'
+import { MdCancel } from "react-icons/md";
+import { RiEditCircleFill } from "react-icons/ri";
 
 const Doctor = () => {
     const [view, setView] = useState(false)
@@ -11,18 +13,22 @@ const Doctor = () => {
         >
             <Heading>Doctor</Heading>
             <div
-                className="flex justify-between gap-2"
+                className="flex justify-between md:flex-col lg:flex-row gap-2"
             >
                 <div
-                    className="w-1/2 p-2 bg-white rounded"
+                    className="md:w-full lg:w-1/2 p-2 md:flex bg-white rounded"
                 >
-                    <div>
+                    <div
+                        className="w-4/12 md:flex justify-center items-center"
+                    >
                         <img
                             src={doctor?.image ? doctor.image : image}
                             className="h-40 w-40 rounded-full border"
                         />
                     </div>
-                    <div>
+                    <div
+                        className="w-8/12"
+                    >
                         <h2
                             className="p-2 text-center text-lg font-medium border-b uppercase"
                         >
@@ -108,7 +114,7 @@ const Doctor = () => {
                     </div>
                 </div>
                 <div
-                    className="w-1/2 p-2 bg-white rounded space-y-2"
+                    className="md:w-full lg:w-1/2 p-2 bg-white rounded space-y-2"
                 >
                     <div
                         className="p-2 border-b flex justify-between items-center"
@@ -155,8 +161,15 @@ const Doctor = () => {
                                 <td scope="row" className="p-2 whitespace-nowrap">
                                     20:30
                                 </td>
-                                <td scope="row" className="p-2 whitespace-nowrap text-center">
-                                    De Up
+                                <td scope="row" className="p-2 flex justify-center items-center space-x-3 whitespace-nowrap text-center">
+                                    <RiEditCircleFill 
+                                        size={25}
+                                        className="text-teal-500"
+                                    />
+                                    <MdCancel 
+                                        size={25}
+                                        className="text-red-500"
+                                    />
                                 </td>
                             </tr>
                         </tbody>

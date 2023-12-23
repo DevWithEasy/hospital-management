@@ -41,11 +41,19 @@ const UpdateFloor = ({view,setView}) => {
             <div
                 className='w-11/12 md:w-6/12 lg:w-5/12 bg-white rounded-md shadow-xl'
             >
-                <h2
-                    className="p-2 text-center border-b"
+                <div
+                    className="p-2 flex justify-between items-center text-xl uppercase border-b"
                 >
-                    Add new floor
-                </h2>
+                    <p>
+                        Add new doctor
+                    </p>
+                    <button
+                        onClick={()=>setView(!view)}
+                        className="px-3 hover:text-red-500"
+                    >
+                        X
+                    </button>
+                </div>
                 <form
                     onSubmit={(e)=>handleUpdateFloor(e)}
                     className="p-4"

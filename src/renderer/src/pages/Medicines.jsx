@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Heading } from '../component/Index';
+import { Heading,AddMedicine } from '../component/Index';
 
 const Medicines = () => {
     const [view,setView] = useState(false)
@@ -58,6 +58,9 @@ const Medicines = () => {
                     </tbody>
                 </table>
             </div>
+            {view &&
+                <AddMedicine {...{view,setView}}/>
+            }
         </div>
     );
 };

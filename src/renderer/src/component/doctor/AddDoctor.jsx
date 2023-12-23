@@ -41,16 +41,24 @@ const AddDoctor = ({ view, setView }) => {
         <div
             id="wrapper"
             onClick={handleView}
-            className='h-screen fixed -top-2 left-0 w-full flex justify-center items-center bg-gray-500/50'
+            className='h-screen fixed -top-2 left-0 w-full flex justify-center items-center bg-gray-500/50 overflow-y-auto'
         >
             <div
-                className='w-11/12 md:w-6/12 lg:w-5/12 bg-white rounded-md shadow-xl'
+                className='w-10/12 md:w-10/12 lg:w-5/12 md:my-10 bg-white rounded-md shadow-'
             >
-                <h2
-                    className="p-2 text-xl uppercase border-b"
+                <div
+                    className="p-2 flex justify-between items-center text-xl uppercase border-b"
                 >
-                    Add new doctor
-                </h2>
+                    <p>
+                        Add new doctor
+                    </p>
+                    <button
+                        onClick={() => setView(!view)}
+                        className="px-3 hover:text-red-500"
+                    >
+                        X
+                    </button>
+                </div>
                 <form
                     onSubmit={(e) => handleAddDoctor(e)}
                     className="p-4 space-y-2"

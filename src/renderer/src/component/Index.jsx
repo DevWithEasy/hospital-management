@@ -8,7 +8,9 @@ import AddDoctor from "./doctor/AddDoctor";
 import AddShedule from "./doctor/AddShedule";
 import AddFloor from "./floor/AddFloor";
 import UpdateFloor from "./floor/UpdateFloor";
+import AddMedicine from "./medicine/AddMedicine";
 import AddRoom from "./room/AddRoom";
 import UpdateRoom from "./room/UpdateRoom";
 
-export {AddShedule,AddDoctor,Toast,SideBar,Header,Heading,Input,SearchPatient,AddFloor,UpdateFloor,AddRoom,UpdateRoom}
+
+export {AddMedicine,AddShedule,AddDoctor,Toast,SideBar,Header,Heading,Input,SearchPatient,AddFloor,UpdateFloor,AddRoom,UpdateRoom}
