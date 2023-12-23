@@ -44,7 +44,7 @@ const AddDoctor = ({ view, setView }) => {
             className='h-screen fixed -top-2 left-0 w-full flex justify-center items-center bg-gray-500/50 overflow-y-auto'
         >
             <div
-                className='w-10/12 md:w-10/12 lg:w-5/12 md:my-10 bg-white rounded-md shadow-'
+                className='w-10/12 md:w-10/12 lg:w-8/12 md:my-10 bg-white rounded-md shadow-'
             >
                 <div
                     className="p-2 flex justify-between items-center text-xl uppercase border-b"
@@ -63,46 +63,50 @@ const AddDoctor = ({ view, setView }) => {
                     onSubmit={(e) => handleAddDoctor(e)}
                     className="p-4 space-y-2"
                 >
-                    <Input {...{
-                        label: 'Name',
-                        name: 'name',
-                        currentValue: value.name,
-                        value, setValue
-                    }} />
-                    <Input {...{
-                        label: 'Specialist',
-                        name: 'specialist',
-                        currentValue: value.specialist,
-                        value, setValue
-                    }} />
-                    <Input {...{
-                        label: 'Education',
-                        name: 'education',
-                        currentValue: value.education,
-                        value, setValue
-                    }} />
-                    <Input {...{
-                        label: 'Experience Area',
-                        name: 'experienceArea',
-                        currentValue: value.experienceArea,
-                        value, setValue
-                    }} />
-                    <Input {...{
-                        label: 'Consultation Fee',
-                        type: 'number',
-                        name: 'consultationFee',
-                        currentValue: value.consultationFee,
-                        value, setValue
-                    }} />
                     <div
-                        className="space-y-2"
+                        className="grid grid-cols-2 gap-2"
                     >
-                        <label className="text-gray-500 text-base">Photo</label>
-                        <input
-                            type="file"
-                            onChange={(e) => setImage(e.target.files[0])}
-                            className="w-full p-2 border rounded"
-                        />
+                        <Input {...{
+                            label: 'Name',
+                            name: 'name',
+                            currentValue: value.name,
+                            value, setValue
+                        }} />
+                        <Input {...{
+                            label: 'Specialist',
+                            name: 'specialist',
+                            currentValue: value.specialist,
+                            value, setValue
+                        }} />
+                        <Input {...{
+                            label: 'Education',
+                            name: 'education',
+                            currentValue: value.education,
+                            value, setValue
+                        }} />
+                        <Input {...{
+                            label: 'Experience Area',
+                            name: 'experienceArea',
+                            currentValue: value.experienceArea,
+                            value, setValue
+                        }} />
+                        <Input {...{
+                            label: 'Consultation Fee',
+                            type: 'number',
+                            name: 'consultationFee',
+                            currentValue: value.consultationFee,
+                            value, setValue
+                        }} />
+                        <div
+                            className="space-y-2"
+                        >
+                            <label className="text-gray-500 text-base">Photo</label>
+                            <input
+                                type="file"
+                                onChange={(e) => setImage(e.target.files[0])}
+                                className="w-full p-1.5 border rounded"
+                            />
+                        </div>
                     </div>
                     <button
                         className="px-6 py-2 bg-teal-500 text-white rounded-md"

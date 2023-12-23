@@ -36,7 +36,7 @@ const AddFloor = ({view,setView}) => {
         <div
             id="wrapper"
             onClick={handleView}
-            className='h-screen fixed top-0 left-0 w-full flex justify-center items-center bg-gray-500/50'
+            className='h-screen fixed -top-2 left-0 w-full flex justify-center items-center bg-gray-500/50'
         >
             <div
                 className='w-11/12 md:w-6/12 lg:w-5/12 bg-white rounded-md shadow-xl'

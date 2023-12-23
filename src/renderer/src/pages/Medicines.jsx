@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Heading,AddMedicine } from '../component/Index';
+import { RiEditCircleFill } from 'react-icons/ri';
+import { MdCancel } from 'react-icons/md';
 
 const Medicines = () => {
     const [view,setView] = useState(false)
@@ -30,7 +32,7 @@ const Medicines = () => {
                             <th scope="col" className="px-2 py-3">
                                 Stock
                             </th>
-                            <th scope="col" className="px-2 py-3">
+                            <th scope="col" className="px-2 py-3 text-center">
                                 Action
                             </th>
                         </tr>
@@ -51,9 +53,16 @@ const Medicines = () => {
                             <td className="p-2">
                                 345
                             </td>
-                            <td className="p-2">
-                                De Up
-                            </td>
+                            <td className="p-2 flex justify-center items-center space-x-3 whitespace-nowrap text-center">
+                                    <RiEditCircleFill 
+                                        size={25}
+                                        className="text-teal-500"
+                                    />
+                                    <MdCancel 
+                                        size={25}
+                                        className="text-red-500"
+                                    />
+                                </td>
                         </tr>
                     </tbody>
                 </table>

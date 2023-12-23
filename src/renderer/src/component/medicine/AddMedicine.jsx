@@ -3,15 +3,15 @@ import { useState } from "react";
 import {Input, Toast} from "../Index";
 import axios  from "axios";
 import toast from 'react-hot-toast'
-import {useParams} from 'react-router-dom'
 
 const AddMedicine = ({view,setView}) => {
-    const {id} = useParams()
     const [value,setValue] = useState({
-        floorId : id,
-        roomNo : '',
-        rentFee : ''
+        name : '',
+        type : '',
+        price : ''
     })
+
+    const types = ['Tablet', 'Capsule', 'Syrup', 'Others']
 
     const handleAddMedicine=async(e)=>{
         e.preventDefault()
@@ -49,7 +49,7 @@ const AddMedicine = ({view,setView}) => {
                     className="p-2 flex justify-between items-center text-xl uppercase border-b"
                 >
                     <p>
-                        Add new doctor
+                        Add new medicine
                     </p>
                     <button
                         onClick={()=>setView(!view)}
@@ -63,16 +63,29 @@ const AddMedicine = ({view,setView}) => {
                     className="p-4 space-y-2"
                 >
                     <Input {...{
-                        label : 'Room No',
-                        type : 'number',
-                        name : 'roomNo',
-                        currentValue : value.floorNo,
+                        label : 'Name',
+                        type : 'text',
+                        name : 'name',
+                        currentValue : value.name,
                         value,setValue
                     }}/>
+                    <div
+                        className="space-y-2"
+                    >
+                        <label className="text-gray-500 text-base">Day :</label>
+                        <select
+                            className="w-full p-2 border rounded"
+                        >
+                            <option>Select Type</option>
+                            {
+                                types.map(type => <option key={type} value=''>{type}</option>)
+                            }
+                        </select>
+                    </div>
                     <Input {...{
-                        label : 'Rent Fee',
+                        label : 'price',
                         type : 'number',
-                        name : 'rentFee',
+                        name : 'price',
                         currentValue : value.floorNo,
                         value,setValue
                     }}/>

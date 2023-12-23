@@ -4,12 +4,16 @@ import {Input, Toast} from "../Index";
 import axios  from "axios";
 import toast from 'react-hot-toast'
 
-const UpdateFloor = ({view,setView}) => {
+const UpdateMedicine = ({view,setView}) => {
     const [value,setValue] = useState({
-        floorNo : ''
+        name : '',
+        type : '',
+        price : ''
     })
 
-    const handleUpdateFloor=async(e)=>{
+    const types = ['Tablet', 'Capsule', 'Syrup', 'Others']
+
+    const handleUpdateMedicine=async(e)=>{
         e.preventDefault()
         if(!value.floorNo){
             toast.custom((t)=><Toast {...{
@@ -45,7 +49,7 @@ const UpdateFloor = ({view,setView}) => {
                     className="p-2 flex justify-between items-center text-xl uppercase border-b"
                 >
                     <p>
-                        Add new doctor
+                        Add new medicine
                     </p>
                     <button
                         onClick={()=>setView(!view)}
@@ -55,18 +59,40 @@ const UpdateFloor = ({view,setView}) => {
                     </button>
                 </div>
                 <form
-                    onSubmit={(e)=>handleUpdateFloor(e)}
-                    className="p-4"
+                    onSubmit={(e)=>handleUpdateMedicine(e)}
+                    className="p-4 space-y-2"
                 >
                     <Input {...{
-                        label : 'Floor No',
+                        label : 'Name',
+                        type : 'text',
+                        name : 'name',
+                        currentValue : value.name,
+                        value,setValue
+                    }}/>
+                    <div
+                        className="space-y-2"
+                    >
+                        <label className="text-gray-500 text-base">Day :</label>
+                        <select
+                            className="w-full p-2 border rounded"
+                        >
+                            <option>Select Type</option>
+                            {
+                                types.map(type => <option key={type} value=''>{type}</option>)
+                            }
+                        </select>
+                    </div>
+                    <Input {...{
+                        label : 'price',
                         type : 'number',
-                        name : 'floorNo',
+                        name : 'price',
                         currentValue : value.floorNo,
                         value,setValue
                     }}/>
-                    <button>
-
+                    <button
+                        className="px-6 py-2 bg-teal-500 text-white rounded-md"
+                    >
+                        Submit
                     </button>
                 </form>
             </div>
@@ -74,4 +100,4 @@ const UpdateFloor = ({view,setView}) => {
     );
 };
 
-export default UpdateFloor;
+export default UpdateMedicine;

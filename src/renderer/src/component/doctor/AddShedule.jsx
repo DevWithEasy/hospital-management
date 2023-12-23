@@ -13,7 +13,7 @@ const AddShedule = ({ view, setView }) => {
         consultationFee: ''
     })
 
-    const days= ['Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday']
+    const days = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
 
     const handleAddShedule = async (e) => {
         e.preventDefault()
@@ -54,7 +54,7 @@ const AddShedule = ({ view, setView }) => {
                         Add new doctor
                     </p>
                     <button
-                        onClick={()=>setView(!view)}
+                        onClick={() => setView(!view)}
                         className="px-3 hover:text-red-500"
                     >
                         X
@@ -67,26 +67,26 @@ const AddShedule = ({ view, setView }) => {
                     <div
                         className="space-y-2"
                     >
-                    <label className="text-gray-500 text-base">Day :</label>
-                    <select
-                        className="w-full p-2 border rounded"
-                    >
-                        <option>Select day</option>
-                        {
-                            days.map(day=><option key={day} value=''>{day}</option>)
-                        }
-                    </select>
+                        <label className="text-gray-500 text-base">Day :</label>
+                        <select
+                            className="w-full p-2 border rounded"
+                        >
+                            <option>Select day</option>
+                            {
+                                days.map(day => <option key={day} value=''>{day}</option>)
+                            }
+                        </select>
                     </div>
                     <Input {...{
                         label: 'From',
-                        type : 'time',
+                        type: 'time',
                         name: 'from',
                         currentValue: value.from,
                         value, setValue
                     }} />
                     <Input {...{
                         label: 'To',
-                        type : 'time',
+                        type: 'time',
                         name: 'to',
                         currentValue: value.to,
                         value, setValue

@@ -116,7 +116,7 @@ const AvailableRoom = ({roomRef, view, setView, value, setValue}) => {
         <div
             onClick={handleView}
             id='wrapper'
-            className="fixed -top-0 left-0 h-screen w-full flex justify-center items-center bg-gray-500/50 overflow-y-auto"
+            className="fixed -top-2 left-0 h-screen w-full flex justify-center items-center bg-gray-500/50 overflow-y-auto"
         >
             <div
                 className="w-4/12 p-4 space-y-4 bg-white shadow-xl rounded-md"
