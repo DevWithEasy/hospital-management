@@ -1,9 +1,18 @@
-import {Heading} from "../component/Index";
+import { useState } from "react";
+import { Heading, Input_Search } from "../component/Index";
 
 const Invoices = () => {
+    const [query, setQuery] = useState('')
     return (
-        <div>
+        <div
+            className='space-y-2'
+        >
             <Heading>Invoices</Heading>
+
+            <Input_Search {...{
+                query, setQuery
+            }} />
+
         </div>
     );
 };

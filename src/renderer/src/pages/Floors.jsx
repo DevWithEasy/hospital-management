@@ -1,21 +1,27 @@
 import { useState } from "react";
-import {AddFloor, Heading} from "../component/Index";
+import {AddFloor, Button_Add, Heading, Input_Search} from "../component/Index";
 import {useNavigate} from 'react-router-dom';
 
 const Floors = () => {
     const navigate = useNavigate()
     const [view,setView] = useState(false)
+    const [query,setQuery] = useState('')
     return (
         <div
             className="space-y-2"
         >
             <Heading>Floors</Heading>
-            <button
-                onClick={()=>setView(!view)}
-                className='px-4 py-2 bg-teal-500 text-white rounded-md'
+            <div
+                className='flex justify-between items-center'
             >
-                Add Floor
-            </button>
+                <Input_Search {...{
+                    query,setQuery
+                }}/>
+                <Button_Add {...{
+                    text: 'Add Floor',
+                    view,setView
+                }}/>
+            </div>
             <div className="relative overflow-x-auto">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead className="text-xs text-gray-700 uppercase bg-slate-200">
@@ -37,7 +43,7 @@ const Floors = () => {
                     <tbody>
                         <tr 
                             onClick={()=>navigate(`/floor/fadhfakjsdfha`)}
-                            className="bg-white border-b hover:bg-teal-50 cursor-pointer"
+                            className="bg-white border-b cursor-pointer"
                         >
                             <td scope="row" className="p-2 whitespace-nowrap">
                                 jdfadshfadsw

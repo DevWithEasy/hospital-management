@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {AddRoom, Heading} from "../component/Index";
+import {AddRoom, Button_Add, Heading} from "../component/Index";
 
 const Floor = () => {
     const [view,setView] = useState(false)
@@ -8,12 +8,16 @@ const Floor = () => {
             className="space-y-2"
         >
             <Heading>Floor</Heading>
-            <button
-                onClick={()=>setView(!view)}
-                className='px-4 py-2 bg-teal-500 text-white rounded-md'
+            
+            <div
+                className="flex justify-end"
             >
-                Add Room
-            </button>
+                <Button_Add {...{
+                    text: 'Add Room',
+                    view,setView
+                }}/>
+            </div>
+
             {view &&
                 <AddRoom {...{view,setView}}/>
             }
