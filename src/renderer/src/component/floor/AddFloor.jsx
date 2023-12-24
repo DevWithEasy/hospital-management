@@ -1,14 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import {Input} from "../Index";
+import {Input, Loading} from "../Index";
 
 import { create } from "../../utils/api_crud";
 import useUserStore from "../../store/userStore";
 
 const AddFloor = ({view,setView}) => {
-    const {reload} = useUserStore()
+    const {reload,loading,setLoading} = useUserStore()
     const [value,setValue] = useState({
-        floorNo : ''
+        name : '',
+        no : ''
     })
 
     const handleView=(e)=>{
@@ -45,15 +46,22 @@ const AddFloor = ({view,setView}) => {
                         path : 'floor',
                         value,
                         setView,
-                        reload
+                        reload,
+                        setLoading
                     })}
                     className="p-4 space-y-2"
                 >
                     <Input {...{
-                        label : 'Floor No',
+                        label : 'Name',
+                        name : 'name',
+                        currentValue : value.name,
+                        value,setValue
+                    }}/>
+                    <Input {...{
+                        label : 'No',
                         type : 'number',
-                        name : 'floorNo',
-                        currentValue : value.floorNo,
+                        name : 'no',
+                        currentValue : value.no,
                         value,setValue
                     }}/>
                     <button
@@ -63,6 +71,9 @@ const AddFloor = ({view,setView}) => {
                     </button>
                 </form>
             </div>
+            {loading &&
+                <Loading/>
+            }
         </div>
     );
 };

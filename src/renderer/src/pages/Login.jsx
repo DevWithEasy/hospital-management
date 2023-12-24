@@ -1,41 +1,49 @@
 import { useState } from "react";
-import {Input,Toast} from "../component/Index";
+import { Input, Loading, Toast } from "../component/Index";
 import axios from "axios";
 import api_url from "../utils/api_url";
 import useUserStore from "../store/userStore";
 import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-    const {addUser} = useUserStore()
-    const [value,setValue] = useState({
-        email : '',
-        password : ''
+    const navigate = useNavigate()
+    const { addUser, loading, setLoading } = useUserStore()
+    const [value, setValue] = useState({
+        email: '',
+        password: ''
     })
 
-    const loginHandler =async(e)=>{
+    const loginHandler = async (e) => {
         e.preventDefault()
-        if(!value.email || !value.password){
-            toast.custom((t)=>
+        if (!value.email || !value.password) {
+            return toast.custom((t) =>
                 <Toast {...{
                     t,
-                    duration : 2000,
-                    type : 'warning',
-                    message : 'Please insert email and password'
-                }}/>
+                    duration: 2000,
+                    type: 'warning',
+                    message: 'Please insert email and password'
+                }} />
             )
         }
+        setLoading(true)
         try {
-            const res = await axios.post(`${api_url}/api/auth/signin`,value)
-            localStorage.setItem('access_token',`Bareer ${res.data.token}`)
-            addUser(res.data.data)
+            const res = await axios.post(`${api_url}/api/auth/signin`, value)
+            if (res.data.success) {
+                localStorage.setItem('access_token', `Bareer ${res.data.token}`)
+                addUser(res.data.data)
+                setLoading(false)
+                navigate('/')
+            }
         } catch (error) {
-            toast.custom((t)=>
+            setLoading(false)
+            return toast.custom((t) =>
                 <Toast {...{
                     t,
-                    duration : 2000,
-                    type : 'erorr',
-                    message : 'Something went wrong'
-                }}/>
+                    duration: 2000,
+                    type: 'erorr',
+                    message: 'Something went wrong'
+                }} />
             )
         }
     }
@@ -53,29 +61,32 @@ const Login = () => {
                     Feni Medicare Center
                 </h2>
                 <form
-                    onSubmit={(e)=>loginHandler(e)}
+                    onSubmit={(e) => loginHandler(e)}
                     className="p-4 space-y-3"
                 >
-                <Input {...{
-                    label: 'Email or phone',
-                    name : 'email',
-                    currentValue: value.email,
-                    value,setValue
-                }}/>
-                <Input {...{
-                    label: 'Password',
-                    name : 'password',
-                    currentValue: value.password,
-                    value,setValue
-                }}/>
-                <button
-                    type="submit"
-                    className="w-full bg-teal-500 text-white rounded-md p-2"
-                >
-                    Login
-                </button>
+                    <Input {...{
+                        label: 'Email or phone',
+                        name: 'email',
+                        currentValue: value.email,
+                        value, setValue
+                    }} />
+                    <Input {...{
+                        label: 'Password',
+                        name: 'password',
+                        currentValue: value.password,
+                        value, setValue
+                    }} />
+                    <button
+                        type="submit"
+                        className="w-full bg-teal-500 text-white rounded-md p-2"
+                    >
+                        Login
+                    </button>
                 </form>
             </div>
+            {loading &&
+                <Loading />
+            }
         </div>
     );
 };

@@ -7,6 +7,8 @@ const createUserStore = (set)=>({
     users : [],
     random : 0,
     loading : false,
+    floors : [],
+    rooms : [],
 
     addUser : (data)=>{
         set(()=>({
@@ -25,16 +27,26 @@ const createUserStore = (set)=>({
             users : users
         }))
     },
-    setLoading : ()=>{
-        set((state)=>({
-            loading : state.loading ? false : true
+    setLoading : (status)=>{
+        set(()=>({
+            loading : status
         }))
     },
     reload : ()=>{
         set(()=>({
             random : Math.random()
         }))
-    }
+    },
+    addfloors : (floors)=>{
+        set(()=>({
+            floors : floors
+        }))
+    },
+    addRooms : (rooms)=>{
+        set(()=>({
+            floors : rooms
+        }))
+    },
 })
 const useUserStore =create(
     devtools(

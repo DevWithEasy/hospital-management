@@ -1,30 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import {Input, Toast} from "../Index";
-import axios  from "axios";
-import toast from 'react-hot-toast'
+import {Button_Save, Input, Loading} from "../Index";
+import { update } from "../../utils/api_crud";
+import useUserStore from "../../store/userStore";
 
-const UpdateFloor = ({view,setView}) => {
-    const [value,setValue] = useState({
-        floorNo : ''
-    })
-
-    const handleUpdateFloor=async(e)=>{
-        e.preventDefault()
-        if(!value.floorNo){
-            toast.custom((t)=><Toast {...{
-                t,
-                type : 'error',
-                message : 'Please insert floor no.'
-            }}/>)
-        }
-        try {
-            const res = await axios.post('')
-            console.log(res.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+const UpdateFloor = ({id,view,setView}) => {
+    const {floors,loading,setLoading,reload} = useUserStore()
+    const [value,setValue] = useState(floors.find(floor=>floor._id === id))
 
     const handleView=(e)=>{
         if(e.target.id === 'wrapper'){
@@ -45,7 +27,7 @@ const UpdateFloor = ({view,setView}) => {
                     className="p-2 flex justify-between items-center text-xl uppercase border-b"
                 >
                     <p>
-                        Add new doctor
+                        Update Floor
                     </p>
                     <button
                         onClick={()=>setView(!view)}
@@ -55,21 +37,37 @@ const UpdateFloor = ({view,setView}) => {
                     </button>
                 </div>
                 <form
-                    onSubmit={(e)=>handleUpdateFloor(e)}
-                    className="p-4"
+                    onSubmit={(e)=>update({
+                        e,
+                        path : `floor/${id}`,
+                        value,
+                        reload,
+                        setView,
+                        setLoading
+                    })}
+                    className="p-4 space-y-2"
                 >
                     <Input {...{
-                        label : 'Floor No',
-                        type : 'number',
-                        name : 'floorNo',
-                        currentValue : value.floorNo,
+                        label : 'Name',
+                        name : 'name',
+                        currentValue : value.name,
                         value,setValue
                     }}/>
-                    <button>
-
-                    </button>
+                    <Input {...{
+                        label : 'No',
+                        type : 'number',
+                        name : 'no',
+                        currentValue : value.no,
+                        value,setValue
+                    }}/>
+                    <Button_Save>
+                        Save Changes
+                    </Button_Save>
                 </form>
             </div>
+            {loading &&
+                <Loading/>
+            }
         </div>
     );
 };
