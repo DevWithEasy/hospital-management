@@ -40,7 +40,6 @@ const Login = () => {
         }
     }
 
-    console.log(value)
     return (
         <div
             className="h-screen flex justify-center items-center bg-teal-50"

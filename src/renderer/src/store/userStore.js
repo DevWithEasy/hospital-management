@@ -6,6 +6,7 @@ const createUserStore = (set)=>({
     user : {},
     users : [],
     random : 0,
+    loading : false,
 
     addUser : (data)=>{
         set(()=>({
@@ -22,6 +23,11 @@ const createUserStore = (set)=>({
     addUsers : (users)=>{
         set(()=>({
             users : users
+        }))
+    },
+    setLoading : ()=>{
+        set((state)=>({
+            loading : state.loading ? false : true
         }))
     },
     reload : ()=>{

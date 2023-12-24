@@ -38,7 +38,6 @@ export const getDatas=async(data)=>{
         })
 
         if (res.data.success) {
-            toast.success(res.data.message)
             setData(res.data.data)
         }
     } catch (error) {
