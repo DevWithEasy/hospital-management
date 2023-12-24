@@ -85,7 +85,7 @@ const Login = () => {
                 </form>
             </div>
             {loading &&
-                <Loading />
+                <Loading {...{msg : 'Logging your account'}}/>
             }
         </div>
     );

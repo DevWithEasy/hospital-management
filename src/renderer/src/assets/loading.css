@@ -1,17 +1,17 @@
-.loader {
+.loading {
     width: fit-content;
     font-weight: bold;
     font-family: monospace;
-    font-size: 50px;
+    font-size: 30px;
     color: #0000;
-    background: linear-gradient(90deg, #ffffff calc(50% + 0.5ch), #000 0) right/calc(200% + 1ch) 100%;
+    background: linear-gradient(90deg, #14b8a6 calc(50% + 0.5ch), #000 0) right/calc(200% + 1ch) 100%;
     -webkit-background-clip: text;
     background-clip: text;
     animation: l7 2s infinite steps(11);
 }
 
-.loader:before {
-    content: "Loading..."
+.loading:before {
+    content: "Please wait..."
 }
 
 @keyframes l7 {

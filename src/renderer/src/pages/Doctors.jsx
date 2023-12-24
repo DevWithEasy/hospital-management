@@ -25,17 +25,19 @@ const Doctors = () => {
             <div className="relative overflow-x-auto p-2 bg-white rounded-md">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead className="text-xs text-gray-700 uppercase bg-slate-200">
-                        <tr>
-                            <th scope="col" className="px-2 py-3">
+                        <tr
+                            className="text-center"
+                        >
+                            <th scope="col" className="p-2">
                                 ID
                             </th>
-                            <th scope="col" className="px-2 py-3">
+                            <th scope="col" className="p-2">
                                 Name
                             </th>
-                            <th scope="col" className="px-2 py-3">
+                            <th scope="col" className="p-2">
                                 Address
                             </th>
-                            <th scope="col" className="px-2 py-3">
+                            <th scope="col" className="p-2">
                                 Category
                             </th>
                         </tr>
@@ -43,7 +45,7 @@ const Doctors = () => {
                     <tbody>
                         <tr 
                             onClick={()=>navigate(`/doctor/fadhfakjsdfha`)}
-                            className="bg-white border-b cursor-pointer"
+                            className="bg-white border-b text-center cursor-pointer"
                         >
                             <td scope="row" className="p-2 whitespace-nowrap">
                                 jdfadshfadsw

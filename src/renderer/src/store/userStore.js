@@ -44,7 +44,7 @@ const createUserStore = (set)=>({
     },
     addRooms : (rooms)=>{
         set(()=>({
-            floors : rooms
+            rooms : rooms
         }))
     },
 })

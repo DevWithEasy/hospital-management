@@ -1,34 +1,18 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import {Input, Toast} from "../Index";
-import axios  from "axios";
-import toast from 'react-hot-toast'
+import {Button_Save, Input, Loading} from "../Index";
 import {useParams} from 'react-router-dom'
+import { create } from "../../utils/api_crud";
+import useUserStore from "../../store/userStore";
 
 const AddRoom = ({view,setView}) => {
+    const {reload,loading,setLoading} = useUserStore()
     const {id} = useParams()
     const [value,setValue] = useState({
         floorId : id,
-        roomNo : '',
-        rentFee : ''
+        no : '',
+        fee : ''
     })
-
-    const handleAddRoom=async(e)=>{
-        e.preventDefault()
-        if(!value.floorNo){
-            toast.custom((t)=><Toast {...{
-                t,
-                type : 'error',
-                message : 'Please insert floor no.'
-            }}/>)
-        }
-        try {
-            const res = await axios.post('')
-            console.log(res.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     const handleView=(e)=>{
         if(e.target.id === 'wrapper'){
@@ -43,7 +27,7 @@ const AddRoom = ({view,setView}) => {
             className='h-screen fixed -top-2 left-0 w-full flex justify-center items-center bg-gray-500/50'
         >
             <div
-                className='w-11/12 md:w-6/12 lg:w-5/12 bg-white rounded-md shadow-xl'
+                className={`w-11/12 md:w-6/12 lg:w-5/12 bg-white rounded-md shadow-xl ${loading ? 'blur' : ''}`}
             >
                 <div
                     className="p-2 flex justify-between items-center text-xl uppercase border-b"
@@ -59,30 +43,38 @@ const AddRoom = ({view,setView}) => {
                     </button>
                 </div>
                 <form
-                    onSubmit={(e)=>handleAddRoom(e)}
+                    onSubmit={(e)=>create({
+                        e, 
+                        path : 'floor/room', 
+                        value, 
+                        setView, 
+                        reload,
+                        setLoading
+                    })}
                     className="p-4 space-y-2"
                 >
                     <Input {...{
                         label : 'Room No',
                         type : 'number',
-                        name : 'roomNo',
-                        currentValue : value.floorNo,
+                        name : 'no',
+                        currentValue : value.no,
                         value,setValue
                     }}/>
                     <Input {...{
                         label : 'Rent Fee',
                         type : 'number',
-                        name : 'rentFee',
-                        currentValue : value.floorNo,
+                        name : 'fee',
+                        currentValue : value.fee,
                         value,setValue
                     }}/>
-                    <button
-                        className="px-6 py-2 bg-teal-500 text-white rounded-md"
-                    >
+                    <Button_Save>
                         Submit
-                    </button>
+                    </Button_Save>
                 </form>
             </div>
+            {loading &&
+                <Loading {...{msg : 'Creating new room.'}}/>
+            }
         </div>
     );
 };

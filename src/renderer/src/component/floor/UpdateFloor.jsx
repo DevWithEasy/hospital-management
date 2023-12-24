@@ -13,7 +13,7 @@ const UpdateFloor = ({id,view,setView}) => {
             setView(!view)
         }
     }
-    
+
     return (
         <div
             id="wrapper"
@@ -21,7 +21,7 @@ const UpdateFloor = ({id,view,setView}) => {
             className='h-screen fixed -top-2 left-0 w-full flex justify-center items-center bg-gray-500/50'
         >
             <div
-                className='w-11/12 md:w-6/12 lg:w-5/12 bg-white rounded-md shadow-xl'
+                className={`w-11/12 md:w-6/12 lg:w-5/12 bg-white rounded-md shadow-xl ${loading ? 'blur' : ''}`}
             >
                 <div
                     className="p-2 flex justify-between items-center text-xl uppercase border-b"
@@ -66,7 +66,7 @@ const UpdateFloor = ({id,view,setView}) => {
                 </form>
             </div>
             {loading &&
-                <Loading/>
+                <Loading {...{msg : 'Updating floor.'}}/>
             }
         </div>
     );
