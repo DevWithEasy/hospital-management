@@ -1,10 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { Input, Toast } from "../Index";
+import { Input, Loading, Toast } from "../Index";
 import axios from "axios";
 import toast from 'react-hot-toast'
+import api_url from "../../utils/api_url";
+import useUserStore from "../../store/userStore";
 
 const AddDoctor = ({ view, setView }) => {
+    const { loading, setLoading, reload } = useUserStore()
     const [value, setValue] = useState({
         name: '',
         specialist: '',
@@ -16,18 +19,38 @@ const AddDoctor = ({ view, setView }) => {
 
     const handleAddDoctor = async (e) => {
         e.preventDefault()
-        if (!value.floorNo) {
+        if (!value.name || !value.specialist || !value.education || !value.experienceArea || !value.consultationFee) {
             toast.custom((t) => <Toast {...{
                 t,
                 type: 'error',
-                message: 'Please insert floor no.'
+                message: 'Please insert all field.'
             }} />)
         }
+        setLoading(true)
         try {
-            const res = await axios.post('')
-            console.log(res.data)
+            const formData = new FormData()
+            formData.append('name', value.name)
+            formData.append('specialist', value.specialist)
+            formData.append('education', value.education)
+            formData.append('experienceArea', value.experienceArea)
+            formData.append('consultationFee', value.consultationFee)
+            formData.append('image', image)
+
+            const res = await axios.post(`${api_url}/api/doctor/`, formData, {
+                headers: {
+                    'authorization': localStorage.getItem('access_token')
+                }
+            })
+
+            if (res.data.success) {
+                setLoading(false)
+                reload()
+                setView(!view)
+                toast.success('Doctor created successfuly.')
+            }
         } catch (error) {
-            console.log(error)
+            setLoading(false)
+            toast.error(error?.response?.data?.message ? error.response.data.message : 'Something went wrong.')
         }
     }
 
@@ -44,7 +67,7 @@ const AddDoctor = ({ view, setView }) => {
             className='h-screen fixed -top-2 left-0 w-full flex justify-center items-center bg-gray-500/50 overflow-y-auto'
         >
             <div
-                className='w-10/12 md:w-10/12 lg:w-8/12 md:my-10 bg-white rounded-md shadow-'
+                className={`w-10/12 md:w-10/12 lg:w-8/12 md:my-10 bg-white rounded-md ${loading ? 'blur' : ''}`}
             >
                 <div
                     className="p-2 flex justify-between items-center text-xl font-semibold uppercase border-b"
@@ -115,6 +138,9 @@ const AddDoctor = ({ view, setView }) => {
                     </button>
                 </form>
             </div>
+            {loading &&
+                <Loading {...{ msg: 'Creating doctor profile.' }} />
+            }
         </div>
     );
 };

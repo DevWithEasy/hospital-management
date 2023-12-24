@@ -9,6 +9,8 @@ const createUserStore = (set)=>({
     loading : false,
     floors : [],
     rooms : [],
+    floorRooms : [],
+    doctors : [],
 
     addUser : (data)=>{
         set(()=>({
@@ -45,6 +47,16 @@ const createUserStore = (set)=>({
     addRooms : (rooms)=>{
         set(()=>({
             rooms : rooms
+        }))
+    },
+    addFloorRooms : (data)=>{
+        set(()=>({
+            floorRooms : data
+        }))
+    },
+    addDoctors : (data)=>{
+        set(()=>({
+            doctors : data
         }))
     },
 })

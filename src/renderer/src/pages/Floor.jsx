@@ -23,8 +23,6 @@ const Floor = () => {
         })
     }, [random])
 
-    console.log(rooms)
-
     return (
         <div
             className="space-y-2"
@@ -48,7 +46,7 @@ const Floor = () => {
                     rooms.length > 0 && <p
                         className="p-2 mb-2 inline-block text-gray-500 text-sm space-x-1 items-center bg-gray-50 rounded-md"
                     >
-                        <span>{rooms[0].no}</span>
+                        <span>{rooms[0].floorId.no}</span>
                         <span>({rooms[0].floorId.name})</span>
                     </p>
                 }
@@ -131,7 +129,7 @@ const Floor = () => {
             {deleteView &&
                 <DeleteView {...{
                     id: currentId,
-                    path: `floor/${id}`,
+                    path: `floor/room/${id}/${currentId}`,
                     view: deleteView,
                     setView: setDeleteView
                 }} />

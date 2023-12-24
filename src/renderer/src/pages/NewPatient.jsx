@@ -1,8 +1,11 @@
-import { useRef, useState } from "react";
-import { Heading, Input } from "../component/Index";
+import { useEffect, useRef, useState } from "react";
+import { Heading, Input, Loading } from "../component/Index";
 import AvailableRoom from "../component/AvailableRoom";
+import useUserStore from "../store/userStore";
+import { getDatas } from "../utils/api_crud";
 
 const NewPatient = () => {
+    const { floorRooms, addFloorRooms, loading, setLoading } = useUserStore()
     const roomRef = useRef(null)
     const [view, setView] = useState(false)
 
@@ -11,10 +14,21 @@ const NewPatient = () => {
         age: '',
         mobile: '',
         address: '',
-        floor: '',
-        room: ''
+        f_id: '',
+        r_id: ''
     })
 
+    useEffect(() => {
+        getDatas({
+            path: 'floor/rooms',
+            setData: addFloorRooms,
+            setLoading
+        })
+    }, [])
+
+    const _f = floorRooms?.find(floor=>floor._id === value.f_id)
+    const _r = _f?.rooms?.find(room=>room._id === value.r_id)
+    
     return (
         <div
             className="space-y-2"
@@ -60,7 +74,7 @@ const NewPatient = () => {
                         <label className="text-gray-500 text-base">Floor And Room</label>
                         <input
                             ref={roomRef}
-                            value={`${value.floor && value.room ? `Floor : ${value.floor}, Room No: ${value.room}` : ''}`}
+                            value={`${value.f_id && value.r_id ? `Floor : ${_f?.name}, Room No: ${_r?.no}` : ''}`}
                             onFocus={() => setView(!view)}
                             className="w-full p-2 border rounded-md"
                             readOnly
@@ -74,8 +88,14 @@ const NewPatient = () => {
                 </button>
             </form>
             {view &&
-                    <AvailableRoom {...{ roomRef, view, setView, value, setValue }} />
-                }
+                <AvailableRoom {...{
+                    data : floorRooms,
+                    roomRef, view, setView, value, setValue 
+                }} />
+            }
+            {loading &&
+                <Loading {...{msg : 'Finding available rooms'}}/>
+            }
         </div>
     );
 };

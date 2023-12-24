@@ -83,6 +83,7 @@ export const update = async (data) => {
     }
 }
 
+//delete data utils
 export const deleteData = async (data) => {
     const { path, setView, reload,setLoading } = data
     setLoading(true)

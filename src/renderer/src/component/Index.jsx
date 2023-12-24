@@ -12,6 +12,7 @@ import SideBar from "./SideBar";
 import Toast from "./Toast";
 import AddDoctor from "./doctor/AddDoctor";
 import AddShedule from "./doctor/AddShedule";
+import UpdateDoctor from "./doctor/UpdateDoctor";
 import AddFloor from "./floor/AddFloor";
 import UpdateFloor from "./floor/UpdateFloor";
 import AddMedicine from "./medicine/AddMedicine";
@@ -19,5 +20,5 @@ import AddRoom from "./room/AddRoom";
 import UpdateRoom from "./room/UpdateRoom";
 
 
-export {NoDataFound, Button_Save,DeleteView,AddDoctor, AddFloor, AddMedicine, AddRoom, AddShedule, Button_Add, Header, Heading, Input, Input_Search, Loading, SearchPatient, SideBar, Toast, UpdateFloor, UpdateRoom };
+export {UpdateDoctor,NoDataFound, Button_Save,DeleteView,AddDoctor, AddFloor, AddMedicine, AddRoom, AddShedule, Button_Add, Header, Heading, Input, Input_Search, Loading, SearchPatient, SideBar, Toast, UpdateFloor, UpdateRoom };
 

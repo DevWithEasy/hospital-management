@@ -1,35 +1,22 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { Input, Toast } from "../Index";
-import axios from "axios";
-import toast from 'react-hot-toast'
+import { Input, Loading } from "../Index";
+import useUserStore from "../../store/userStore";
+import { update } from "../../utils/api_crud";
 
-const UpdateDoctor = ({ view, setView }) => {
-    const [value, setValue] = useState({
-        name: '',
-        specialist: '',
-        education: '',
-        experienceArea: '',
-        consultationFee: ''
-    })
+const UpdateDoctor = ({ id, view, setView }) => {
+    const { doctors, loading, setLoading, reload } = useUserStore()
+    const [value, setValue] = useState(doctors.find(doctor => doctor._id === id))
+
     const [image, setImage] = useState(null)
 
-    const handleUpdateDoctor = async (e) => {
-        e.preventDefault()
-        if (!value.floorNo) {
-            toast.custom((t) => <Toast {...{
-                t,
-                type: 'error',
-                message: 'Please insert floor no.'
-            }} />)
-        }
-        try {
-            const res = await axios.post('')
-            console.log(res.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    const formData = new FormData()
+    formData.append('name', value.name)
+    formData.append('specialist', value.specialist)
+    formData.append('education', value.education)
+    formData.append('experienceArea', value.experienceArea)
+    formData.append('consultationFee', value.consultationFee)
+    formData.append('image', image)
 
     const handleView = (e) => {
         if (e.target.id === 'wrapper') {
@@ -44,65 +31,76 @@ const UpdateDoctor = ({ view, setView }) => {
             className='h-screen fixed -top-2 left-0 w-full flex justify-center items-center bg-gray-500/50'
         >
             <div
-                className='w-11/12 md:w-6/12 lg:w-5/12 bg-white rounded-md shadow-xl'
+                className={`w-10/12 md:w-10/12 lg:w-8/12 md:my-10 bg-white rounded-md ${loading ? 'blur' : ''}`}
             >
                 <div
-                    className="p-2 flex justify-between items-center text-xl uppercase border-b"
+                    className="p-2 flex justify-between items-center text-xl font-semibold uppercase border-b"
                 >
                     <p>
-                        Add new doctor
+                        Update doctor
                     </p>
                     <button
-                        onClick={()=>setView(!view)}
+                        onClick={() => setView(!view)}
                         className="px-3 hover:text-red-500"
                     >
                         X
                     </button>
                 </div>
                 <form
-                    onSubmit={(e) => handleUpdateDoctor(e)}
+                    onSubmit={(e) => update({
+                        e,
+                        path: `doctor/${id}`,
+                        value : formData,
+                        setLoading,
+                        reload,
+                        setView
+                    })}
                     className="p-4 space-y-2"
                 >
-                    <Input {...{
-                        label: 'Name',
-                        name: 'name',
-                        currentValue: value.name,
-                        value, setValue
-                    }} />
-                    <Input {...{
-                        label: 'Specialist',
-                        name: 'specialist',
-                        currentValue: value.specialist,
-                        value, setValue
-                    }} />
-                    <Input {...{
-                        label: 'Education',
-                        name: 'education',
-                        currentValue: value.education,
-                        value, setValue
-                    }} />
-                    <Input {...{
-                        label: 'Experience Area',
-                        name: 'experienceArea',
-                        currentValue: value.experienceArea,
-                        value, setValue
-                    }} />
-                    <Input {...{
-                        label: 'Consultation Fee',
-                        type: 'number',
-                        name: 'consultationFee',
-                        currentValue: value.consultationFee,
-                        value, setValue
-                    }} />
                     <div
-                        className="space-y-2"
+                        className="grid grid-cols-2 gap-2"
                     >
-                        <label className="text-gray-500 text-base">Photo</label>
-                        <input
-                            type="file"
-                            onChange={(e) => setImage(e.target.files[0])}
-                            className="w-full p-2 border rounded"
-                        />
+                        <Input {...{
+                            label: 'Name',
+                            name: 'name',
+                            currentValue: value.name,
+                            value, setValue
+                        }} />
+                        <Input {...{
+                            label: 'Specialist',
+                            name: 'specialist',
+                            currentValue: value.specialist,
+                            value, setValue
+                        }} />
+                        <Input {...{
+                            label: 'Education',
+                            name: 'education',
+                            currentValue: value.education,
+                            value, setValue
+                        }} />
+                        <Input {...{
+                            label: 'Experience Area',
+                            name: 'experienceArea',
+                            currentValue: value.experienceArea,
+                            value, setValue
+                        }} />
+                        <Input {...{
+                            label: 'Consultation Fee',
+                            type: 'number',
+                            name: 'consultationFee',
+                            currentValue: value.consultationFee,
+                            value, setValue
+                        }} />
+                        <div
+                            className="space-y-2"
+                        >
+                            <label className="text-gray-500 text-base">Photo</label>
+                            <input
+                                type="file"
+                                onChange={(e) => setImage(e.target.files[0])}
+                                className="w-full p-1.5 border rounded"
+                            />
+                        </div>
                     </div>
                     <button
                         className="px-6 py-2 bg-teal-500 text-white rounded-md"
@@ -111,6 +109,9 @@ const UpdateDoctor = ({ view, setView }) => {
                     </button>
                 </form>
             </div>
+            {loading &&
+                <Loading {...{ msg: 'Updating doctor profile.' }} />
+            }
         </div>
     );
 };

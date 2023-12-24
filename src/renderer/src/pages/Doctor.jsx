@@ -3,10 +3,14 @@ import { AddShedule, Heading } from "../component/Index";
 import image from '../assets/demo-user.png'
 import { MdCancel } from "react-icons/md";
 import { RiEditCircleFill } from "react-icons/ri";
+import {useParams} from 'react-router-dom'
+import useUserStore from "../store/userStore";
 
 const Doctor = () => {
+    const {id} = useParams()
+    const {doctors} = useUserStore()
     const [view, setView] = useState(false)
-    const [doctor, setDoctor] = useState({})
+    const doctor = doctors.find(doctor=>doctor._id = id)
     return (
         <div
             className="space-y-2"
@@ -22,7 +26,7 @@ const Doctor = () => {
                         className="w-4/12 md:flex justify-center items-center"
                     >
                         <img
-                            src={doctor?.image ? doctor.image : image}
+                            src={doctor?.image ? doctor.image.url : image}
                             className="h-40 w-40 rounded-full border"
                         />
                     </div>
@@ -35,6 +39,7 @@ const Doctor = () => {
                             Information
                         </h2>
                         <table>
+                            <tbody>
                             <tr>
                                 <td
                                     className="px-3 py-2"
@@ -62,7 +67,7 @@ const Doctor = () => {
                                 <td
                                     className="px-3 py-2"
                                 >
-                                    {doctor?.name}
+                                    {doctor?.specialist}
                                 </td>
                             </tr>
                             <tr>
@@ -77,7 +82,7 @@ const Doctor = () => {
                                 <td
                                     className="px-3 py-2"
                                 >
-                                    {doctor?.name}
+                                    {doctor?.experienceArea}
                                 </td>
                             </tr>
                             <tr>
@@ -92,7 +97,7 @@ const Doctor = () => {
                                 <td
                                     className="px-3 py-2"
                                 >
-                                    {doctor?.name}
+                                    {doctor?.education}
                                 </td>
                             </tr>
                             <tr>
@@ -107,9 +112,10 @@ const Doctor = () => {
                                 <td
                                     className="px-3 py-2"
                                 >
-                                    {doctor?.name}
+                                    {doctor?.consultationFee}
                                 </td>
                             </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
