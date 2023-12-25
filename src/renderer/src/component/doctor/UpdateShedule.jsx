@@ -1,18 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Button_Save, Input, } from "../Index";
-import { create } from "../../utils/api_crud";
+import { update } from "../../utils/api_crud";
 import handleChange from "../../utils/handleChange";
 import useUserStore from "../../store/userStore";
 
-const AddShedule = ({ id, view, setView }) => {
+const UpdateShedule = ({ data, view, setView }) => {
     const {reload,loading,setLoading} = useUserStore()
-    const [value, setValue] = useState({
-        doctorId : id,
-        day : '',
-        from : '',
-        to : ''
-    })
+    const [value, setValue] = useState(data)
 
     const days = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
 
@@ -21,7 +16,7 @@ const AddShedule = ({ id, view, setView }) => {
             setView(!view)
         }
     }
-    
+
     return (
         <div
             id="wrapper"
@@ -45,12 +40,13 @@ const AddShedule = ({ id, view, setView }) => {
                     </button>
                 </div>
                 <form
-                    onSubmit={(e) => create({
+                    onSubmit={(e) => update({
                         e,
-                        path : `doctor/shedule/${id}`,
+                        path : `doctor/shedule/${value._id}`,
                         value,
                         setView,
-                        reload,setLoading
+                        reload,
+                        setLoading
                     })}
                     className="p-4 space-y-2"
                 >
@@ -59,8 +55,9 @@ const AddShedule = ({ id, view, setView }) => {
                     >
                         <label className="text-gray-500 text-base">Day :</label>
                         <select
-                            name = 'day'
-                            onChange={(e)=>handleChange(e,value,setValue)}
+                            name='day'
+                            value = {value.day}
+                            onChange={(e) => handleChange(e, value, setValue)}
                             className="w-full p-2 border rounded"
                         >
                             <option>Select day</option>
@@ -84,7 +81,7 @@ const AddShedule = ({ id, view, setView }) => {
                         value, setValue
                     }} />
                     <Button_Save>
-                        Submit
+                        Save changes
                     </Button_Save>
                 </form>
             </div>
@@ -92,4 +89,4 @@ const AddShedule = ({ id, view, setView }) => {
     );
 };
 
-export default AddShedule;
+export default UpdateShedule;
