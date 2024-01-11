@@ -20,8 +20,8 @@ const AvailableRoom = ({roomRef, data, view, setView, value, setValue}) => {
         }else{
             const newValue={
                 ...value,
-                f_id : floor,
-                r_id : room
+                floor,
+                room
             }
             setValue(newValue)
             setView(!view)

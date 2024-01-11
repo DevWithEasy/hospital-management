@@ -6,6 +6,7 @@ import Doctors from "./Doctors";
 import Error404 from "./Error404";
 import Floor from "./Floor";
 import Floors from "./Floors";
+import Generics from "./Generics";
 import Home from "./Home";
 import Invoice from "./Invoice";
 import Invoices from "./Invoices";
@@ -20,5 +21,4 @@ import Payments from "./Payments";
 import Settings from "./Settings";
 import Users from "./Users";
 
-
-export { Appointments, DashBoard, Doctor, Doctors, Error404, Floor, Floors, Home, Input_Password, Invoice, Invoices, Layout, Login, Medicines, NewPatient, Patient, Patients, Payment, Payments, Settings, Users };
+export { Generics,Appointments, DashBoard, Doctor, Doctors, Error404, Floor, Floors, Home, Input_Password, Invoice, Invoices, Layout, Login, Medicines, NewPatient, Patient, Patients, Payment, Payments, Settings, Users };

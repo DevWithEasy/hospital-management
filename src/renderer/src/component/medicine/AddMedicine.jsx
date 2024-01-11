@@ -1,40 +1,34 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import {Input, Toast} from "../Index";
-import axios  from "axios";
-import toast from 'react-hot-toast'
+import { useEffect, useState } from "react";
+import {Input} from "../Index";
+import useUserStore from "../../store/userStore";
+import { create, getDatas } from "../../utils/api_crud";
+import handleChange from "../../utils/handleChange";
 
 const AddMedicine = ({view,setView}) => {
+    const {addGenerics,generics,reload,setLoading} = useUserStore()
     const [value,setValue] = useState({
         name : '',
+        generic : '',
         type : '',
         price : ''
     })
 
     const types = ['Tablet', 'Capsule', 'Syrup', 'Others']
 
-    const handleAddMedicine=async(e)=>{
-        e.preventDefault()
-        if(!value.floorNo){
-            toast.custom((t)=><Toast {...{
-                t,
-                type : 'error',
-                message : 'Please insert floor no.'
-            }}/>)
-        }
-        try {
-            const res = await axios.post('')
-            console.log(res.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     const handleView=(e)=>{
         if(e.target.id === 'wrapper'){
             setView(!view)
         }
     }
+
+    useEffect(() => {
+        getDatas({
+            path: 'generic',
+            setData: addGenerics,
+            setLoading
+        })
+    }, [])
     
     return (
         <div
@@ -59,7 +53,14 @@ const AddMedicine = ({view,setView}) => {
                     </button>
                 </div>
                 <form
-                    onSubmit={(e)=>handleAddMedicine(e)}
+                    onSubmit={(e)=>create({
+                        e,
+                        path : 'medicine',
+                        value,
+                        setView,
+                        reload,
+                        setLoading
+                    })}
                     className="p-4 space-y-2"
                 >
                     <Input {...{
@@ -72,19 +73,36 @@ const AddMedicine = ({view,setView}) => {
                     <div
                         className="space-y-2"
                     >
-                        <label className="text-gray-500 text-base">Day :</label>
+                        <label className="text-gray-500 text-base">Generic :</label>
                         <select
+                            name="generic"
+                            onChange={(e)=>handleChange(e,value,setValue)}
+                            className="w-full p-2 border rounded"
+                        >
+                            <option>Select Generic</option>
+                            {
+                                generics.map(generic => <option key={generic._id} value={generic._id}>{generic.name}</option>)
+                            }
+                        </select>
+                    </div>
+                    <div
+                        className="space-y-2"
+                    >
+                        <label className="text-gray-500 text-base">Type :</label>
+                        <select
+                            name="type"
+                            onChange={(e)=>handleChange(e,value,setValue)}
                             className="w-full p-2 border rounded"
                         >
                             <option>Select Type</option>
                             {
-                                types.map(type => <option key={type} value=''>{type}</option>)
+                                types.map(type => <option key={type} value={type}>{type}</option>)
                             }
                         </select>
                     </div>
                     <Input {...{
                         label : 'price',
-                        type : 'number',
+                        type : 'text',
                         name : 'price',
                         currentValue : value.floorNo,
                         value,setValue

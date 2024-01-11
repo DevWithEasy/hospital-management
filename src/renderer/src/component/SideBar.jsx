@@ -3,7 +3,7 @@ import { IoHomeOutline, IoSettingsOutline,IoPersonAddOutline  } from "react-icon
 import { HiOutlineUsers } from "react-icons/hi2";
 import { IoMdBook } from "react-icons/io";
 import { FaUserDoctor } from "react-icons/fa6";
-import { MdOutlinePayment } from "react-icons/md";
+import { MdOutlinePayment,MdOutlineControlPointDuplicate } from "react-icons/md";
 import { LiaFileInvoiceSolid } from "react-icons/lia";
 import { BsBuildings } from "react-icons/bs";
 import { GiMedicines } from "react-icons/gi";
@@ -39,6 +39,11 @@ const SideBar = () => {
             path : '/appointments',
             title : 'Appoinments',
             icon : <IoMdBook/>,
+        },
+        {
+            path : '/generics',
+            title : 'Generics',
+            icon : <MdOutlineControlPointDuplicate/>,
         },
         {
             path : '/medicines',

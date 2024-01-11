@@ -14,8 +14,9 @@ const NewPatient = () => {
         age: '',
         mobile: '',
         address: '',
-        f_id: '',
-        r_id: ''
+        floor: '',
+        room: '',
+        case : ''
     })
 
     useEffect(() => {
@@ -26,9 +27,10 @@ const NewPatient = () => {
         })
     }, [])
 
-    const _f = floorRooms?.find(floor=>floor._id === value.f_id)
-    const _r = _f?.rooms?.find(room=>room._id === value.r_id)
+    const _f = floorRooms?.find(floor=>floor._id === value.floor)
+    const _r = _f?.rooms?.find(room=>room._id === value.room)
     
+
     return (
         <div
             className="space-y-2"
@@ -59,27 +61,34 @@ const NewPatient = () => {
                         label: 'Mobile no'
                     }} />
                     <Input {...{
+                        name: 'address',
+                        label: 'Address',
                         value, setValue,
                         currentValue: value.address,
-                        name: 'address',
-                        label: 'Address'
                     }} />
-                </div>
-                <div
-                    className="grid grid-cols-2 gap-2"
-                >
+                    <Input {...{
+                        name: 'case',
+                        label: 'Case',
+                        value, setValue,
+                        currentValue: value.case,
+                    }} />
                     <div
                         className="space-y-2"
                     >
                         <label className="text-gray-500 text-base">Floor And Room</label>
                         <input
                             ref={roomRef}
-                            value={`${value.f_id && value.r_id ? `Floor : ${_f?.name}, Room No: ${_r?.no}` : ''}`}
+                            value={`${value.floor && value.room ? `Floor : ${_f?.name}, Room No: ${_r?.no}` : ''}`}
                             onFocus={() => setView(!view)}
                             className="w-full p-2 border rounded-md"
                             readOnly
                         />
                     </div>
+                </div>
+                <div
+                    className="grid grid-cols-2 gap-2"
+                >
+                    
                 </div>
                 <button
                     className="px-4 py-2 bg-teal-500 text-white rounded-md"

@@ -1,40 +1,29 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import {Input, Toast} from "../Index";
-import axios  from "axios";
-import toast from 'react-hot-toast'
+import { useEffect, useState } from "react";
+import {Input, Loading} from "../Index";
+import useUserStore from "../../store/userStore";
+import { getDatas, update } from "../../utils/api_crud";
+import handleChange from "../../utils/handleChange";
 
-const UpdateMedicine = ({view,setView}) => {
-    const [value,setValue] = useState({
-        name : '',
-        type : '',
-        price : ''
-    })
+const UpdateMedicine = ({id,view,setView}) => {
+    const {addGenerics,generics,medicines,loading,setLoading,reload} = useUserStore()
+    const [value,setValue] = useState(medicines.find(medicine=>medicine._id === id))
 
     const types = ['Tablet', 'Capsule', 'Syrup', 'Others']
-
-    const handleUpdateMedicine=async(e)=>{
-        e.preventDefault()
-        if(!value.floorNo){
-            toast.custom((t)=><Toast {...{
-                t,
-                type : 'error',
-                message : 'Please insert floor no.'
-            }}/>)
-        }
-        try {
-            const res = await axios.post('')
-            console.log(res.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     const handleView=(e)=>{
         if(e.target.id === 'wrapper'){
             setView(!view)
         }
     }
+
+    useEffect(() => {
+        getDatas({
+            path: 'generic',
+            setData: addGenerics,
+            setLoading
+        })
+    }, [])
     
     return (
         <div
@@ -59,7 +48,14 @@ const UpdateMedicine = ({view,setView}) => {
                     </button>
                 </div>
                 <form
-                    onSubmit={(e)=>handleUpdateMedicine(e)}
+                    onSubmit={(e)=>update({
+                        e,
+                        path : `medicine/${id}`,
+                        value,
+                        reload,
+                        setView,
+                        setLoading
+                    })}
                     className="p-4 space-y-2"
                 >
                     <Input {...{
@@ -72,21 +68,38 @@ const UpdateMedicine = ({view,setView}) => {
                     <div
                         className="space-y-2"
                     >
-                        <label className="text-gray-500 text-base">Day :</label>
+                        <label className="text-gray-500 text-base">Generic :</label>
                         <select
+                            name="generic"
+                            onChange={(e)=>handleChange(e,value,setValue)}
+                            className="w-full p-2 border rounded"
+                        >
+                            <option>Select Generic</option>
+                            {
+                                generics.map(generic => <option key={generic._id} value={generic._id}>{generic.name}</option>)
+                            }
+                        </select>
+                    </div>
+                    <div
+                        className="space-y-2"
+                    >
+                        <label className="text-gray-500 text-base">Type :</label>
+                        <select
+                            name="type"
+                            onChange={(e)=>handleChange(e,value,setValue)}
                             className="w-full p-2 border rounded"
                         >
                             <option>Select Type</option>
                             {
-                                types.map(type => <option key={type} value=''>{type}</option>)
+                                types.map(type => <option key={type} value={type}>{type}</option>)
                             }
                         </select>
                     </div>
                     <Input {...{
                         label : 'price',
-                        type : 'number',
+                        type : 'text',
                         name : 'price',
-                        currentValue : value.floorNo,
+                        currentValue : value.price,
                         value,setValue
                     }}/>
                     <button
@@ -96,6 +109,9 @@ const UpdateMedicine = ({view,setView}) => {
                     </button>
                 </form>
             </div>
+            {loading &&
+                <Loading {...{msg : 'Medicine updating...'}}/>
+            }
         </div>
     );
 };
